@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["cyclic_barrier.hpp"],
+  "submit_files": ["cyclic_barrier.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "yield",
+        "sleep_for",
+        "SpinWait"
+      ],
+      "hint": "Use condition_variable"
+    },
+    {
+      "patterns": [
+        "atomic"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "submit_files": ["solution.sh", "solution.py"],
+  "forbidden": [
+    {
+      "patterns": [
+        "yield",
+        "sleep_for",
+        "SpinWait"
+      ],
+      "hint": "Use condition_variable"
+    },
+    {
+      "patterns": [
+        "atomic"
+      ]
+    }
+  ]
+}

@@ -1,14 +1,11 @@
 # Topics
 
-add_subdirectory(tutorial)
-add_subdirectory(mutex)
-add_subdirectory(cond)
-add_subdirectory(tasks)
-add_subdirectory(fibers)
-add_subdirectory(futures)
-add_subdirectory(coro)
-add_subdirectory(lockfree)
-add_subdirectory(mm)
+add_subdirectory(bash)
+add_subdirectory(tree)
+add_subdirectory(ast)
+add_subdirectory(abstract)
+add_subdirectory(database)
+add_subdirectory(vector)
+add_subdirectory(lists)
+add_subdirectory(hashtable)
 
-# my exe
-add_subdirectory(my)

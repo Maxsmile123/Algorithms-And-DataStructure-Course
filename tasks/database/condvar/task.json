@@ -1,0 +1,80 @@
+{
+  "tests": [
+    {
+      "targets": ["cv_unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["cv_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["mutex_unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["mutex_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["mutex_futex_tests"],
+      "profiles": ["FaultyFibers"]
+    },
+    {
+      "targets": ["event_stress_tests"],
+      "profiles": [
+        "FaultyFibersASan"
+      ]
+    }
+  ],
+  "lint_files": [
+    "mutex.hpp",
+    "condvar.hpp"
+  ],
+  "submit_files": [
+    "mutex.hpp",
+    "condvar.hpp"
+  ],
+  "forbidden": [
+    {
+      "files": ["condvar.hpp"],
+      "patterns": [
+        "yield",
+        "sleep_for",
+        "SpinWait"
+      ],
+      "hint": "Use twist::ed::Wait"
+    },
+    {
+      "patterns": [
+        "twist/ed/stdlike/mutex.hpp"
+      ],
+      "hint": "Implement your own mutex"
+    },
+    {
+      "files": ["mutex.hpp"],
+      "patterns": [
+        "twist::ed::mutex",
+        "sleep"
+      ],
+      "hint": "Use atomic + Wait / WakeOne"
+    },
+    {
+      "files": ["mutex.hpp"],
+      "patterns": [
+        "WakeAll"
+      ],
+      "hint": "Use WakeOne instead, WakeAll can mask synchronization issues and does not match ownership transfer semantics for Mutex"
+    }
+  ]
+}
