@@ -1,6 +1,6 @@
 # Задачи
 
-- [`Bash`](bash) – автоматизация рутиных задач на Bash и Python.
+- [`Bash`](bash) – Shell scripting.
 - [`Tree`](tree) – бинарные деревья поиска, N-нарные деревья: `std::map`, `std::set`
 - [`Deque`](abstract) – абстрактные структуры данных: `std::deque`, `std::stack`, `std::queue`
 - [`Vector`](vector) – динамический массив: `std::vector`
