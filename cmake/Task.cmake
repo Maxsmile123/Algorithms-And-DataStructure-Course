@@ -2,11 +2,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 # --------------------------------------------------------------------
 
-set(LIBS_LIST "wheels;twist;course-test;fmt;function2;expected")
+set(LIBS_LIST "mimalloc;gtest;fmt")
 
-if((CMAKE_BUILD_TYPE MATCHES Release) AND NOT TWIST_FAULTY)
-    list(APPEND LIBS_LIST "mimalloc")
-endif()
 
 # --------------------------------------------------------------------
 

@@ -30,11 +30,11 @@ mkdir workspace
 
 ### Шаг 2
 
-Клонируйте в эту директорию репозиторий курса:
+Клонируйте в эту директорию ваш fork:
 
 ```shell
 cd workspace
-git clone https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course
+git clone https://github.com/YourLogin/Algorithms-And-DataStructure-Course
 ```
 
 Репозиторий курса должен оказаться в собственной поддиректории:
@@ -58,7 +58,7 @@ git submodule update --init --recursive
 
 На этом шаге нужно подготовить рабочее окружение.
 
-Eбедитесь, что у вас свежий стабильный 64-битный Linux.
+Убедитесь, что у вас свежий стабильный 64-битный Linux.
 
 Установите [необходимые зависимости](/docker/image/install_deps.sh).
 

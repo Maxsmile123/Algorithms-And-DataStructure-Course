@@ -12,7 +12,7 @@
 
 Не используйте в логине дефис.
 
-### Fork репозитория с задачи
+### Fork репозитория с задачами
 
 Выполните Fork данного репозиториря. Сделайте его `приватным!`
 
@@ -41,7 +41,7 @@
 <details>
 <summary>Подробнее про правила</summary>
 
-`Первое правило` обязывает мержить коммиты в main только через Pull Request.
+`Первое правило` обязывает мержить коммиты в ветку только через Pull Request.
 
 `Второе правило` ставит в Reviewers участников из файла CODEOWNERS, т.е. меня. Это позволит мне получать уведомление о том, что ваш PR нужно посмотреть.
 
@@ -68,8 +68,6 @@ git config --global user.email "your.email@address.com"
 #### Шаг 3. Выдайте себе PAT
 
 На этом шаге вам нужно получить токен для работы с API https://github.com/
-
-Settings --> Developer Settings--> Persaonl access tokens --> Generate new token --> Note --> set permissions (repo,repo_hook maybe) --> generate token
 
 Для этого на https://github.com/ зайдите в `Settings` своего профиля, затем в `Developer Settings`, после в `Personal access tokens`, там нажмите `Generate new token (Classic)` после чего выберите произвольное имя для вашего токена, поставьте галки напротив (repo, admin:org), установите expiration date и нажмите `Generate token`.
 
