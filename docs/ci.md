@@ -81,6 +81,8 @@ Settings --> Developer Settings--> Persaonl access tokens --> Generate new token
 
 При каждом пуше вас будут просить ввести логин и PAT. Чтобы этого избежать, нужно ввести в консоли в папке репозитория следующую команду:
 ```shell
+git config --global credential.helper manager-core
+# Git 2.39+:
 git config --global credential.helper manager
 ```
 Логин и пароль у вас запросят только при первом пуше.
