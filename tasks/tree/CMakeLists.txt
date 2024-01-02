@@ -1,6 +1,5 @@
 # Tasks
 
-add_subdirectory(barrier)
-add_subdirectory(condvar)
-add_subdirectory(semaphore)
-add_subdirectory(wait_group)
+add_subdirectory(bintree)
+add_subdirectory(bst)
+add_subdirectory(NTree)
