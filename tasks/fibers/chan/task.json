@@ -1,0 +1,103 @@
+{
+  "tests": [
+    {
+      "targets": ["thread_pool_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["thread_pool_stress_tests"],
+      "profiles": [
+        "Debug",
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["manual_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["coroutine_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["fibers_core_tests"],
+      "profiles": [
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["fibers_racy_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["fibers_mutex_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["fibers_mutex_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["fibers_wait_group_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["fibers_wait_group_stress_tests"],
+      "profiles": [
+        "FaultyFibersASan",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["fibers_channel_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["fibers_channel_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["fibers_select_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["fibers_select_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["exe"],
+  "submit_files": ["exe"],
+  "forbidden_patterns": [
+  ]
+}

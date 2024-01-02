@@ -1,0 +1,38 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["futex_tests"],
+      "profiles": ["FaultyFibers"]
+    }
+  ],
+  "submit_files": ["mutex.hpp"],
+  "lint_files": ["mutex.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "twist::ed::mutex",
+        "sleep"
+      ],
+      "hint": "Use atomic + Wait / WakeOne"
+    },
+    {
+      "patterns": [
+        "WakeAll"
+      ],
+      "hint": "Use WakeOne instead, WakeAll can mask synchronization issues and does not match ownership transfer semantics for Mutex"
+    }
+  ]
+}

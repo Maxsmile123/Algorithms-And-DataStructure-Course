@@ -1,0 +1,56 @@
+{
+  "tests": [
+    {
+      "targets": ["tp_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["tp_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["manual_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["strand_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["strand_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["strand_mo_tests"],
+      "profiles": [
+        "Release"
+      ]
+    },
+    {
+      "targets": ["strand_lifetime_tests"],
+      "profiles": [
+        "FaultyFibersASan"
+      ]
+    }
+  ],
+  "lint_files": ["exe"],
+  "submit_files": ["exe"],
+  "forbidden_patterns": [
+  ]
+}

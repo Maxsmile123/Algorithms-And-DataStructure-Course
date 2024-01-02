@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "targets": ["tp_balancing_stress_tests"],
+      "profiles": [
+        "FaultyFibers"
+      ]
+    }
+  ]
+}

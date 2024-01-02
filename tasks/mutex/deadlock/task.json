@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "targets": ["tests"],
+      "profiles": ["Debug"]
+    }
+  ],
+  "submit_files": ["sims"],
+  "lint_files": ["sims"],
+  "forbidden": [
+    {
+      "patterns": ["I am a Fiber"],
+      "hint": "Remove this comment"
+    }
+  ]
+}

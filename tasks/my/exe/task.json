@@ -1,0 +1,18 @@
+{
+  "tests": [
+  ],
+  "lint_files": [
+    "exe"
+  ],
+  "submit_files": [
+    "exe",
+    "examples",
+    "tests",
+    "pipelines",
+    "workloads",
+    "readme.md",
+    "CMakeLists.txt"
+  ],
+  "forbidden": [
+  ]
+}

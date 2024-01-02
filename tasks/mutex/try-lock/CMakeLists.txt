@@ -1,0 +1,6 @@
+begin_task()
+set_task_sources(ticket_lock.hpp)
+add_task_test(unit_tests tests/unit.cpp)
+add_task_test(stress_tests tests/stress.cpp)
+add_task_test(dont_wait_tests tests/dont_wait.cpp)
+end_task()

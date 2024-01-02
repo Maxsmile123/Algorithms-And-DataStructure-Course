@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "shared_ptr_unit_tests"
+      ],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "shared_ptr_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ]
+}

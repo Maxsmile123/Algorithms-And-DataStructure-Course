@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "targets": ["tp_wait_idle_unit_tests"],
+      "profiles": [
+        "Debug"
+      ]
+    },
+    {
+      "targets": ["tp_wait_idle_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ]
+}

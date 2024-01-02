@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "targets": ["test"],
+      "profiles": ["Debug"]
+    }
+  ],
+  "lint_files": ["sim.cpp"],
+  "submit_files": ["sim.cpp"],
+  "forbidden": [
+  ]
+}

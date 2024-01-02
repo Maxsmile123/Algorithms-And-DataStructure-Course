@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "fibers_mutex_symm_transfer_tests"
+      ],
+      "profiles": ["DebugASan"]
+    }
+  ]
+}

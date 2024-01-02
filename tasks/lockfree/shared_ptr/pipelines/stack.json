@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "stack_unit_tests"
+      ],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "stack_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ]
+}

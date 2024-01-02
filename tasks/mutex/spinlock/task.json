@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": ["Debug"]
+    }
+  ],
+  "lint_files": ["spinlock.hpp"],
+  "submit_files": [
+    "atomic_ops.S",
+    "spinlock.hpp"
+  ],
+  "forbidden": [
+    {
+      "patterns": [
+        "Your asm code goes here",
+        "Solution starts here"
+      ],
+      "hint": "Remove this comment"
+    }
+  ]
+}

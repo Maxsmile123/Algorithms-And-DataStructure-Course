@@ -1,0 +1,15 @@
+{
+  "tests": [
+    {
+      "targets": ["tests"],
+      "profiles": ["Debug", "FaultyThreadsASan", "FaultyThreadsTSan"]
+    }
+  ],
+  "lint_files": ["task"],
+  "submit_files": ["task"],
+  "forbidden_patterns": [
+    "StaticThreadPool",
+    "malloc", "free",
+    "make_shared", "shared_ptr"
+  ]
+}

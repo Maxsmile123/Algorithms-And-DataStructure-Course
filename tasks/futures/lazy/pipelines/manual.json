@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "targets": ["manual_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    }
+  ]
+}

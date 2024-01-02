@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "targets": ["futures_unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["futures_lazy_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["futures_alloc_tests"],
+      "profiles": [
+        "Debug"
+      ]
+    },
+    {
+      "targets": ["futures_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ]
+}

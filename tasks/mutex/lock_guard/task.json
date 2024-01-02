@@ -1,0 +1,18 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    }
+  ],
+  "submit_files": ["lock_guard.hpp"],
+  "lint_files": ["lock_guard.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "std::lock_guard"
+      ],
+      "hint": "Implement your own LockGuard"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "fibers_event_unit_tests"
+      ],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_event_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_event_storage_tests"
+      ],
+      "profiles": ["FaultyFibersASan"]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "tests": [
+    {
+      "targets": ["wg_unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["wg_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["wg_storage_tests"],
+      "profiles": ["FaultyFibersASan"]
+    },
+    {
+      "targets": ["wg_futex_tests"],
+      "profiles": ["FaultyFibers"]
+    },
+    {
+      "targets": ["tp_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["tp_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["manual_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["futures_unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["futures_lazy_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["futures_alloc_tests"],
+      "profiles": [
+        "Debug"
+      ]
+    },
+    {
+      "targets": ["futures_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["exe"],
+  "submit_files": ["exe"],
+  "forbidden_patterns": [
+  ]
+}

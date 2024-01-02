@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "targets": ["fibers_sched_unit_tests"],
+      "profiles": ["DebugASan"]
+    },
+    {
+      "targets": ["fibers_sched_stress_tests"],
+      "profiles": [
+        "Debug",
+        "FaultyThreadsTSan",
+        "FaultyThreadsASan"
+      ]
+    }
+  ],
+  "lint_files": ["exe"],
+  "submit_files": ["exe"],
+  "forbidden_patterns": [
+    "shared_ptr",
+    "sleep_for"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "build_dir": "/tmp/clippy-build",
+  "task_ci_config": ".grade.gitlab-ci.yml",
+  "repo_master": "master",
+  "solutions_master": "master",
+  "warmup_targets": [
+    "wheels",
+    "twist"
+  ],
+  "cxx_compiler_binaries": [
+    "clang++-15",
+    "clang++-14",
+    "clang++"
+  ],
+  "c_compiler_binaries": [
+    "clang-15",
+    "clang-14",
+    "clang"
+  ],
+  "format_binaries": [
+    "clang-format-15",
+    "clang-format-14",
+    "clang-format"
+  ],
+  "tidy_binaries": [
+    "clang-tidy-15",
+    "clang-tidy-14",
+    "clang-tidy"
+  ],
+  "tidy_compiler_options": [
+    "-std=c++20",
+    "-stdlib=libc++"
+  ],
+  "tidy_includes_path": "/tmp/clippy-build/Debug/_deps",
+  "tidy_common_includes": [
+    "wheels-src",
+    "sure-src",
+    "twist-src",
+    "tinyfibers-src",
+    "fmt-src/include",
+    "function2-src/include",
+    "expected-src/include",
+    "asio-src/asio/include",
+    "moodycamel-src"
+  ],
+  "forbidden": [
+    {
+      "patterns": [
+        "Your code goes here",
+        "Not implemented",
+        "To be implemented"
+      ],
+      "hint": "Write code and remove this comment"
+    },
+    {
+      "patterns": [
+        "std::atomic",
+        "std::mutex",
+        "std::condition_variable",
+        "std::thread",
+        "std::this_thread",
+        "thread_local "
+      ],
+      "hint": "Use Twist-ed synchronization primitives (https://gitlab.com/Lipovsky/twist/-/blob/master/docs/ru/guide.md)"
+    },
+    {
+      "patterns": [
+        "WakeOne(twist::ed::futex::PrepareWake",
+        "WakeAll(twist::ed::futex::PrepareWake",
+        "WakeOne(twist::ed::PrepareWake",
+        "WakeAll(twist::ed::PrepareWake"
+      ],
+      "hint": "PrepareWake call should be made before the shared state change (See https://gitlab.com/Lipovsky/twist/-/blob/master/docs/ru/guide.md#futex)"
+    },
+    {
+      "patterns": [
+        "<twist/rt/",
+        "twist::rt::"
+      ],
+      "hint": "Do not include / use Twist runtime (twist/rt/)"
+    }
+  ]
+}

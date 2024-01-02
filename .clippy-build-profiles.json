@@ -1,0 +1,40 @@
+{
+  "Debug": [
+    "CMAKE_BUILD_TYPE=Debug",
+    "UBSAN=ON"
+  ],
+  "DebugASan": [
+    "CMAKE_BUILD_TYPE=Debug",
+    "ASAN=ON"
+  ],
+  "Release": [
+    "CMAKE_BUILD_TYPE=Release",
+    "SURE_EXCEPTIONS=OFF"
+  ],
+  "FaultyThreadsASan": [
+    "CMAKE_BUILD_TYPE=Debug",
+    "TWIST_FAULTY=ON",
+    "ASAN=ON"
+  ],
+  "FaultyThreadsTSan": [
+    "CMAKE_BUILD_TYPE=Debug",
+    "TWIST_FAULTY=ON",
+    "TSAN=ON"
+  ],
+  "FaultyFibers": [
+    "CMAKE_BUILD_TYPE=Release",
+    "TWIST_FAULTY=ON",
+    "TWIST_FIBERS=ON",
+    "TWIST_FAST_FIBER_QUEUES=ON",
+    "TWIST_PRINT_STACKS=ON",
+    "SURE_EXCEPTIONS=OFF"
+  ],
+  "FaultyFibersASan": [
+    "CMAKE_BUILD_TYPE=Release",
+    "TWIST_FAULTY=ON",
+    "TWIST_FIBERS=ON",
+    "TWIST_FAST_FIBER_QUEUES=ON",
+    "TWIST_PRINT_STACKS=ON",
+    "ASAN=ON"
+  ]
+}

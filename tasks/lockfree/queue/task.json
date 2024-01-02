@@ -1,0 +1,70 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "queue_unit_tests"
+      ],
+      "profiles": [
+        "Debug"
+      ]
+    },
+    {
+      "targets": [
+        "queue_stress_lf_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "stack_unit_tests"
+      ],
+      "profiles": [
+        "Debug"
+      ]
+    },
+    {
+      "targets": [
+        "stack_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "queue_unit_tests"
+      ],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "queue_stress_mm_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": [
+    "hazard",
+    "lock_free_queue.hpp",
+    "lock_free_stack.hpp"
+  ],
+  "submit_files": [
+    "hazard",
+    "lock_free_queue.hpp",
+    "lock_free_stack.hpp"
+  ],
+  "forbidden_patterns": [
+    "mutex"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "tests": [
+    {
+      "targets": ["coro_unit_tests"],
+      "profiles": ["DebugASan"]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "tests": [
+    {
+      "targets": ["wg_unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["wg_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["wg_storage_tests"],
+      "profiles": ["FaultyFibersASan"]
+    },
+    {
+      "targets": ["wg_futex_tests"],
+      "profiles": ["FaultyFibers"]
+    },
+    {
+      "targets": ["tp_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["tp_stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": ["tp_balancing_stress_tests"],
+      "profiles": [
+        "FaultyFibers"
+      ]
+    },
+    {
+      "targets": ["manual_unit_tests"],
+      "profiles": [
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_sched_unit_tests"
+      ],
+      "profiles": ["DebugASan"]
+    },
+    {
+      "targets": [
+        "fibers_sched_stress_tests"
+      ],
+      "profiles": [
+        "Debug",
+        "FaultyThreadsTSan",
+        "FaultyThreadsASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_event_unit_tests"
+      ],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_event_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_event_storage_tests"
+      ],
+      "profiles": ["FaultyFibersASan"]
+    },
+    {
+      "targets": [
+        "fibers_mutex_unit_tests"
+      ],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_mutex_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_wg_unit_tests"
+      ],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_wg_stress_tests"
+      ],
+      "profiles": [
+        "FaultyFibers",
+        "FaultyFibersASan",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    },
+    {
+      "targets": [
+        "fibers_wg_storage_tests"
+      ],
+      "profiles": ["FaultyFibersASan"]
+    }
+  ],
+  "lint_files": ["exe"],
+  "submit_files": ["exe"],
+  "do_not_change_files": [
+    "exe/executors/thread_pool.hpp"
+  ],
+  "forbidden_patterns": [
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "targets": ["tp_parking_tests"],
+      "profiles": [
+        "FaultyFibers"
+      ]
+    }
+  ]
+}
