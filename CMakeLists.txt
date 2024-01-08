@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(concurrency_course)
+project(DataStructure-Course)
 
 include(cmake/Logging.cmake)
 include(cmake/Ccache.cmake)
@@ -12,7 +12,6 @@ include(cmake/Platform.cmake)
 include(cmake/Development.cmake)
 
 add_subdirectory(library)
-
 # This must be included after library so that
 # third party code is not affected
 include(cmake/Werror.cmake)

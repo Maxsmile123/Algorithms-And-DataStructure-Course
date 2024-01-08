@@ -2,8 +2,9 @@
 
 #include <cstdlib>
 #include <utility>
+#include <functional>
 
-#include <common/IConteiner.hpp>
+//#include <common/IConteiner.hpp>
 
 // https://en.cppreference.com/w/cpp/utility/functional/less
 template <
@@ -11,7 +12,7 @@ template <
   typename Value,
   typename Compare = std::less<Key>
 > // https://en.cppreference.com/w/cpp/container/map
-class Map: public IConteiner {
+class Map {
 public:
   Map() {
     // Not implemented
@@ -25,43 +26,43 @@ public:
     // Not implemented
   }
 
-  bool empty() const {
+  bool IsEmpty() const {
     // Not implemented
   }
 
-  size_t size() const {
+  size_t Size() const {
     // Not implemented
   }
 
-  void swap(IConteiner& /*a*/) {
+  void Swap(Map& /*a*/) {
     // Not implemented
   }
 
-  std::vector<std::pair<const Key, Value>> values() const {
+  std::pair<const Key, Value>* Values() const {
     // Not implemented
   }
 
-  bool insert(const std::pair<const Key, Value>& /*val*/){
+  void Insert(const std::pair<const Key, Value>& /*val*/){
     // Not implemented
   }
 
-  bool insert(std::pair<const Key, Value>&& /*val*/){
+  void Insert(std::pair<const Key, Value>&& /*val*/){
     // Not implemented
   }
 
-  bool erase(const Key& /*key*/){
+  void Erase(const Key& /*key*/){
     // Not implemented
   }
 
-  void clear() noexcept {
+  void Clear() noexcept {
     // Not implemented
   }
 
-  size_t count(const Key& key) const {
+  size_t Count(const Key& /*key*/) const {
     // Not implemented
   }
 
-  bool find(const Key& key) const {
+  bool Find(const Key& /*key*/) const {
     // Not implemented
   }
 
@@ -69,8 +70,17 @@ public:
     // Not implemented
   }
 
+private:
+  template<typename T, typename U>
+  class Node {
+
+
+    private:
+      /*???*/
+  };
+  /*???*/
 
 private:
   /*???*/
 
-}
+};

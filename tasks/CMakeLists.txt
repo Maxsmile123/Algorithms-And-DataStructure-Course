@@ -1,6 +1,5 @@
 # Topics
 
-add_subdirectory(bash)
 add_subdirectory(tree)
 add_subdirectory(ast)
 add_subdirectory(abstract)

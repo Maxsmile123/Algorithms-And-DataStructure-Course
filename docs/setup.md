@@ -12,7 +12,10 @@
 
 ### Шаг 0
 
-Установите `git`.
+Установите `git`:
+```shell
+sudo apt-get install git
+```
 
 ### Шаг 1
 
@@ -60,7 +63,11 @@ git submodule update --init --recursive
 
 Убедитесь, что у вас свежий стабильный 64-битный Linux.
 
-Установите [необходимые зависимости](/docker/image/install_deps.sh).
+Установите [необходимые зависимости](../install_deps.sh):
+
+```shell
+sudo ./install_deps.sh
+```
 
 ### Шаг 5
 
@@ -71,7 +78,7 @@ git submodule update --init --recursive
 
 Запустите установку клиента:
 ```shell
-./install_client.sh
+sudo ./install_client.sh
 ```
 В ходе установки разрешите добавить `clippy` в `PATH`.
 
