@@ -1,5 +1,6 @@
 #include <chrono>
 #include <future>
+#include <map>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -257,6 +258,33 @@ TEST_F(MapTest, EraseNotExistingValue) {
     mp.Erase(-100);
   }, std::runtime_error);
 }
+
+TEST_F(MapTest, StringAsKey) {
+  Map<std::string, int> ages;
+  ages.Insert({
+    {"Maxim", 21},
+    {"Danya", 22},
+    {"Veronika", 24},
+    {"Anna", 19}
+  });
+  std::map<std::string, int> std_ages{
+    {"Maxim", 21},
+    {"Danya", 22},
+    {"Veronika", 24},
+    {"Anna", 19}
+  };
+  auto values = ages.Values(true);
+  auto it = values.begin();
+  for (const auto& val: std_ages) {
+    ASSERT_EQ(it->second, val.second) <<
+                fmt::format("Values isn't equal on {} index", 
+                    std::distance(values.begin(), it)
+                );
+    ++it;
+  }
+
+}
+
 
 
 int main(int argc, char **argv) {

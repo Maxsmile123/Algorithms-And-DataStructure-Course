@@ -1,6 +1,6 @@
 # Бинарное дерево поиска
 
-В этой задача напишем свой [словарь](https://docs.python.org/3/tutorial/datastructures.html#dictionaries), более известный как `std::map`
+В этой задаче напишем свой [словарь](https://docs.python.org/3/tutorial/datastructures.html#dictionaries), более известный как `map`
 
 ---
 
@@ -16,13 +16,13 @@
 У каждого узла есть ключ (`Key`) по которому происходит поиск и значение (`Value`), которое хранится в структуре.
 
 Основные операции: 
-- Вставка элемента: `void insert(const std::pair<const Key, Value>&)`
-- Удаление элемента: `void erase(const Key&)`
-- Поиск элемента: `bool find(const Key&)`
+- Вставка элемента: `void Insert(const std::pair<const Key, Value>&)`
+- Удаление элемента: `void Erase(const Key&)`
+- Поиск элемента: `bool Find(const Key&)`
 
 ### `Insert`
 
-На вход принимает `const std::pair<const Key, Value>`
+На вход принимает `std::pair<const Key, Value>`
 
 См. [std::pair](https://en.cppreference.com/w/cpp/utility/pair)
 
@@ -69,9 +69,9 @@ throw std::runtime_error("Value not found");
 Стоит отметить, что сложность операций будет O(log n) **в среднем**. Однако, если вставлять отсортированные элементы, дерево может выстраиваться в `лесенку`: </br></br>
 ![Alt text](images/image.png)
 
-В таком случае, чтобы все операции превратяться в `O(N)`.
+В таком случае все операции станут выполняться за `O(N)`.
 
-Чтобы этого избежать есть `сбалансированные деревья поиска` - дерево, в которых высоты любого левого и правого поддерева отличаются не более чем на 1. 
+Чтобы этого избежать существуют `сбалансированные деревья поиска` - дерево, в котором высоты любого левого и правого поддерева отличаются не более чем на 1. 
 
 Путём дополнительных операций `балансировки`, достигается `O(log n)` во всех случаях.
 
@@ -87,19 +87,19 @@ throw std::runtime_error("Value not found");
 
 Во всех операциях используется поиск. Реализайте приватный метод, который будет возвращать указатель на искомый узел.
 
-В публичном API не должно быть класса `Node`!
+**В публичном API не должно быть класса `Node`!**
 
 `Compare` - это функция, которая возвращает true, если первый элемент меньше второго. В `std::map` пользователь может задать свою собственную функцию сравнения объектов. Вместо операторов `<` или `>` используйте функцию `Compare(val1, val2)`.
 
 `std::initializer_list` позволяет передавать список элементов.</br>
 [How to create a constructor initialized with a list?](https://stackoverflow.com/questions/21869208/how-to-create-a-constructor-initialized-with-a-list)
 
-`Values` возвращает пользователю [`std::vector`](https://en.cppreference.com/w/cpp/container/vector) пар ключ-значение. Принимает булевский параметр `is_sorted`. Если он `true` - данные в векторе должны быть упорядочены по возрастанию, если `false` - по убыванию.
+`Values` возвращает пользователю [`std::vector`](https://en.cppreference.com/w/cpp/container/vector) пар ключ-значение. Принимает булевский параметр `is_increase`. Если он `true` - данные в векторе должны быть упорядочены по возрастанию, если `false` - по убыванию.
 
 
 ## References
-- [`std::less`](https://en.cppreference.com/w/cpp/utility/functional/less)
-- [`std::pair` is smelly](https://arne-mertz.de/2017/03/smelly-pair-tuple/)
+- [std::less](https://en.cppreference.com/w/cpp/utility/functional/less)
+- [std::pair is smelly](https://arne-mertz.de/2017/03/smelly-pair-tuple/)
 - [Red-Black Tree](https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees/)
 
 ## Примечание
