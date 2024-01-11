@@ -1,17 +1,15 @@
 #pragma once
 
 #include <cstdlib>
-#include <utility>
 #include <functional>
+#include <vector>
+#include <utility>
 
-//#include <common/IConteiner.hpp>
-
-// https://en.cppreference.com/w/cpp/utility/functional/less
 template <
   typename Key,
   typename Value,
   typename Compare = std::less<Key>
-> // https://en.cppreference.com/w/cpp/container/map
+>
 class Map {
 public:
   Map() {
@@ -22,27 +20,35 @@ public:
     // Not implemented
   }
 
+  Map& operator=(const Map& /*mp*/) {
+    std::abort(); // Not implemented
+  }
+
   Value& operator[](const Key& /*key*/) {
-    // Not implemented
+    std::abort(); // Not implemented
   }
 
-  bool IsEmpty() const {
-    // Not implemented
+  inline bool IsEmpty() const {
+    std::abort(); // Not implemented
   }
 
-  size_t Size() const {
-    // Not implemented
+  inline size_t Size() const {
+    std::abort(); // Not implemented
   }
 
   void Swap(Map& /*a*/) {
     // Not implemented
   }
 
-  std::pair<const Key, Value>* Values() const {
-    // Not implemented
+  std::vector<std::pair<const Key, Value>> Values(bool /*is_increase=true*/) const {
+    std::abort(); // Not implemented
   }
 
   void Insert(const std::pair<const Key, Value>& /*val*/){
+    // Not implemented
+  }
+
+  void Insert(const std::initializer_list<std::pair<const Key, Value>>& /*values*/){
     // Not implemented
   }
 
@@ -50,7 +56,7 @@ public:
     // Not implemented
   }
 
-  void Erase(const Key& /*key*/){
+  void Erase(const Key& /*key*/) {
     // Not implemented
   }
 
@@ -58,12 +64,8 @@ public:
     // Not implemented
   }
 
-  size_t Count(const Key& /*key*/) const {
-    // Not implemented
-  }
-
   bool Find(const Key& /*key*/) const {
-    // Not implemented
+    std::abort(); // Not implemented
   }
 
   ~Map() {

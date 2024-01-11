@@ -25,7 +25,13 @@
       "patterns": [
         "std::map"
       ],
-      "hint": "Don't use std::map -> implement him!"
+      "hint": "Don't use std::map -> implement him"
+    },
+    {
+      "patterns": [
+        "std::sort"
+      ],
+      "hint": "Don't use std::sort -> BST doesn't need this"
     }
   ]
 }
