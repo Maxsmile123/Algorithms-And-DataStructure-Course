@@ -85,9 +85,11 @@ throw std::runtime_error("Value not found");
 
 ### Указания к реализации
 
-Во всех операциях используется поиск. Реализайте приватный метод, который будет возвращать указатель на искомый узел.
+Во всех операциях используется поиск. Подумайте над тем, как можно избавиться от дублирования кода в этих местах.
 
-**В публичном API не должно быть класса `Node`!**
+**В публичное API не стоит добавлять новых методов!**
+
+**В публичном API не должно быть класса `Node`!** 
 
 `Compare` - это функция, которая возвращает true, если первый элемент меньше второго. В `std::map` пользователь может задать свою собственную функцию сравнения объектов. Вместо операторов `<` или `>` используйте функцию `Compare(val1, val2)`.
 
@@ -99,7 +101,7 @@ throw std::runtime_error("Value not found");
 
 ## References
 - [std::less](https://en.cppreference.com/w/cpp/utility/functional/less)
-- [std::pair is smelly](https://arne-mertz.de/2017/03/smelly-pair-tuple/)
+- [Why `std::pair` is smelly](https://arne-mertz.de/2017/03/smelly-pair-tuple/)
 - [Red-Black Tree](https://algorithmtutor.com/Data-Structures/Tree/Red-Black-Trees/)
 
 ## Примечание

@@ -73,7 +73,6 @@ public:
   }
 
 private:
-  template<typename T, typename U>
   class Node {
 
 
@@ -86,3 +85,9 @@ private:
   /*???*/
 
 };
+
+// Global swap overloading
+template <typename Key, typename Value>
+void swap(Map<Key, Value>& a, Map<Key, Value>& b){
+  a.Swap(b);
+}

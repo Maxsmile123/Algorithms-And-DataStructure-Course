@@ -47,17 +47,17 @@ TEST_F(MapTest, InsertRoot) {
 }
 
 TEST_F(MapTest, GetValueUsingOperator) {
-  Map<int, int> map;
-  map.Insert({1, 4});
-  ASSERT_EQ(map.Size(), 1);
-  ASSERT_EQ(map[1], 4);
+  ASSERT_EQ(mp[5], 90);
+  ASSERT_EQ(mp[-10], 5);
+  ASSERT_EQ(mp[1], 5);
+  ASSERT_EQ(mp[0], 4);
 }
 
 TEST_F(MapTest, OverwritingWithOperator) {
-  Map<int, int> map;
-  map.Insert({1, 4});
-  map[1] = 5;
-  ASSERT_EQ(map[1], 5);
+  mp[5] = 5;
+  mp[-10] = 10
+  ASSERT_EQ(mp[5], 5);
+  ASSERT_EQ(mp[-10], 10);
 }
 
 TEST_F(MapTest, CreateIfNotExist) {
@@ -146,6 +146,27 @@ TEST_F(MapTest, SimpleSwap) {
   ASSERT_EQ(map[2], 14);
 }
 
+TEST_F(MapTest, StdSwap) {
+  Map<int, int> map;
+  map[1] = 5;
+
+  Map<int, int> dict;
+  dict[1] = 15;
+  dict[2] = 14;
+
+  size_t old_mp_size = map.Size();
+  size_t old_dict_size = dict.Size();
+  
+  std::swap(map, dict);
+
+  ASSERT_EQ(dict.Size(), old_mp_size);
+  ASSERT_EQ(map.Size(), old_dict_size);
+
+  ASSERT_EQ(dict[1], 5);
+  ASSERT_EQ(map[1], 15);
+  ASSERT_EQ(map[2], 14);
+}
+
 TEST_F(MapTest, SwapYourself) {
   Map<int, int> map;
   auto old_adr = &map;
@@ -209,7 +230,6 @@ TEST_F(MapTest, SelfAssignment) {
     std::future_status::timeout
   ) << "There is infinity loop!\n";
 }
-
 
 TEST_F(MapTest, Clear) {
   mp.Clear();
