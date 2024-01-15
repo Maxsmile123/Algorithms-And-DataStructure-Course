@@ -13,7 +13,7 @@ include(FetchContent)
 
 # --------------------------------------------------------------------
 
-# fmt with println
+# fmt with print
 
 project_log("FetchContent: fmt")
 
@@ -33,9 +33,23 @@ project_log("FetchContent: Google test")
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG main
+        GIT_TAG f8d7d77
 )
 FetchContent_MakeAvailable(googletest)
+
+# --------------------------------------------------------------------
+
+# Google Benchmark
+
+project_log("FetchContent: Google Benchmark")
+
+FetchContent_Declare(
+    googlebenchmark
+    GIT_REPOSITORY https://github.com/google/benchmark.git
+    GIT_TAG 015d1a0
+)
+
+FetchContent_MakeAvailable(googlebenchmark)
 
 # --------------------------------------------------------------------
 

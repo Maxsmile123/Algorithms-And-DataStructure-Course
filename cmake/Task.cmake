@@ -2,7 +2,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 # --------------------------------------------------------------------
 
-set(LIBS_LIST "mimalloc;gtest;fmt")
+set(LIBS_LIST "mimalloc;gtest;fmt;benchmark")
 
 
 # --------------------------------------------------------------------
@@ -109,17 +109,6 @@ endfunction()
 
 # --------------------------------------------------------------------
 
-# Playground
-
-function(add_task_playground DIR_NAME)
-    get_task_target(PLAY_TARGET_NAME ${DIR_NAME})
-    project_log("Add task playground: ${PLAY_TARGET_NAME}")
-
-    add_task_dir_target(playground ${DIR_NAME})
-endfunction()
-
-# --------------------------------------------------------------------
-
 # Tests
 
 function(add_task_test BINARY_NAME)
@@ -168,6 +157,7 @@ function(add_task_benchmark BINARY_NAME)
     prepend(BENCH_SOURCES "${TASK_DIR}/" ${ARGN})
     add_task_executable(${BENCH_NAME} ${BENCH_SOURCES})
     target_link_libraries(${BENCH_NAME} benchmark)
+    # --benchmark_counters_tabular=true
 
     if(${TOOL_BUILD})
         get_task_target(RUN_BENCH_TARGET "run_benchmark")

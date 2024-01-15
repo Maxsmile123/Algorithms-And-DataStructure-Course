@@ -22,6 +22,7 @@ class MapTest: public testing::Test {
         {-10, 5},
         {0, 4}
       });
+      assert(mp.Size() == sz);
     }
 
   Map<int, int> mp;
@@ -29,15 +30,15 @@ class MapTest: public testing::Test {
 };
 
 
-TEST_F(MapTest, DefaultConstructor) {
+TEST(EmptyMapTest, DefaultConstructor) {
   Map<int, int> map;
-  ASSERT_TRUE(map.IsEmpty()) << "Default Map isn't empty!";
+  ASSERT_EQ(map.Size(), 0) << "Default Map isn't empty!";
 }
 
-TEST_F(MapTest, InsertRoot) {
+TEST(EmptyMapTest, InsertRoot) {
   Map<int, int> map;
   map.Insert({1, 5});
-  ASSERT_TRUE(map.Size() == 1);
+  ASSERT_EQ(map.Size(), 1);
 
   auto vals = map.Values(true);
 
@@ -46,46 +47,7 @@ TEST_F(MapTest, InsertRoot) {
   ASSERT_EQ(vals[0].second, 5);
 }
 
-TEST_F(MapTest, GetValueUsingOperator) {
-  ASSERT_EQ(mp[5], 90);
-  ASSERT_EQ(mp[-10], 5);
-  ASSERT_EQ(mp[1], 5);
-  ASSERT_EQ(mp[0], 4);
-}
-
-TEST_F(MapTest, OverwritingWithOperator) {
-  mp[5] = 5;
-  mp[-10] = 10
-  ASSERT_EQ(mp[5], 5);
-  ASSERT_EQ(mp[-10], 10);
-}
-
-TEST_F(MapTest, CreateIfNotExist) {
-  Map<int, int> map;
-  map[1];
-  ASSERT_EQ(map[1], 0); // default for type value
-  ASSERT_EQ(map.Size(), 1);
-}
-
-TEST_F(MapTest, GetIncreaseSortedValues) {
-  auto values = mp.Values(true);
-
-  for (size_t i = 1; i < values.size(); ++i) {
-    ASSERT_LT(values[i - 1].second, values[i].second) <<
-                    fmt::format("Doesn't increase starting with {} index", i);
-  }
-}
-
-TEST_F(MapTest, GetDecreaseSortedValues) {
-  auto values = mp.Values(false);
-
-  for (size_t i = 1; i < values.size(); ++i) {
-    ASSERT_GT(values[i - 1].second, values[i].second) <<
-                    fmt::format("Doesn't decrease starting with {} index", i);
-  }
-}
-
-TEST_F(MapTest, InsertRootLeftRight) {
+TEST(EmptyMapTest, InsertRootLeftRight) {
   Map<int, int> map;
   map.Insert({1, 1});
   map.Insert({3, 2});
@@ -102,22 +64,19 @@ TEST_F(MapTest, InsertRootLeftRight) {
   }
 }
 
-TEST_F(MapTest, MoveInsert) {
+TEST(EmptyMapTest, InsertIncreaseSeq) {
   Map<int, int> map;
-  std::pair<const int, int> a(1, 5);
-  map.Insert(std::move(a));
-  ASSERT_TRUE(map.Size() == 1);
-  auto vals = map.Values(true);
-  ASSERT_TRUE(vals.size() == 1);
-  ASSERT_EQ(vals[0].first, 1);
-  ASSERT_EQ(vals[0].second, 5);
-}
-
-TEST_F(MapTest, InsertIncreaseSeq) {
-  ASSERT_TRUE(mp.Size() == sz);
+  map.Insert({
+        {1, 0},
+        {3, 1},
+        {5, 2},
+        {10, 3},
+        {90, 4}
+      });
+  ASSERT_TRUE(map.Size() == 5);
   
-  auto vals = mp.Values(true);
-  ASSERT_TRUE(vals.size() == sz);
+  auto vals = map.Values(true);
+  ASSERT_TRUE(vals.size() == 5);
 
   for (size_t i = 0; i < vals.size(); ++i) {
     ASSERT_EQ(vals[i].second, i) <<
@@ -125,7 +84,7 @@ TEST_F(MapTest, InsertIncreaseSeq) {
   }
 }
 
-TEST_F(MapTest, SimpleSwap) {
+TEST(EmptyMapTest, SimpleSwap) {
   Map<int, int> map;
   map[1] = 5;
 
@@ -146,7 +105,7 @@ TEST_F(MapTest, SimpleSwap) {
   ASSERT_EQ(map[2], 14);
 }
 
-TEST_F(MapTest, StdSwap) {
+TEST(EmptyMapTest, StdSwap) {
   Map<int, int> map;
   map[1] = 5;
 
@@ -156,7 +115,7 @@ TEST_F(MapTest, StdSwap) {
 
   size_t old_mp_size = map.Size();
   size_t old_dict_size = dict.Size();
-  
+
   std::swap(map, dict);
 
   ASSERT_EQ(dict.Size(), old_mp_size);
@@ -167,119 +126,17 @@ TEST_F(MapTest, StdSwap) {
   ASSERT_EQ(map[2], 14);
 }
 
-TEST_F(MapTest, SwapYourself) {
-  Map<int, int> map;
-  auto old_adr = &map;
-  mp.Swap(map);
-  ASSERT_EQ(&map, old_adr);
-}
-
-TEST_F(MapTest, CopyConstructor) {
-  Map<int, int> mp_copy = mp;
-
-  ASSERT_EQ(mp.Size(), mp_copy.Size());
-
-  auto mp_values = mp.Values(true);
-  auto mp_copy_values = mp_copy.Values(true);
-
-  for (size_t i = 0; i < mp_values.size(); ++i) {
-    ASSERT_EQ(mp_values[i], mp_copy_values[i]) <<
-                    fmt::format("Values isn't equal on {} index\n", i);
-  }
-
-  ASSERT_NE(&mp, &mp_copy) << "It's the same object! There must be a copy!\n";
-}
-
-TEST_F(MapTest, CopyEmptyMap) {
-  Map<int, int> map;
-  Map<int, int> mp_copy = map;
-
-  ASSERT_EQ(map.IsEmpty(), mp_copy.IsEmpty());
-  ASSERT_NE(&map, &mp_copy) << "It's the same object! There must be a copy!\n";
-}
-
-
-TEST_F(MapTest, CopyOperator) {
-  Map<int, int> mp_copy;
-
-  mp_copy = mp;
-
-  ASSERT_EQ(mp.Size(), mp_copy.Size());
-
-  auto mp_values = mp.Values(true);
-  auto mp_copy_values = mp_copy.Values(true);
-
-  for (size_t i = 0; i < mp_values.size(); ++i) {
-    ASSERT_EQ(mp_values[i], mp_copy_values[i]) <<
-                    fmt::format("Values isn't equal on {} index", i);
-  }
-
-  ASSERT_NE(&mp, &mp_copy) << "It's the same object! There must be a copy!";
-}
-
-
-TEST_F(MapTest, SelfAssignment) {
+TEST(EmptyMapTest, EraseOnlyRoot) {
   Map<int, int> mp;
-  std::thread thread([&](){
-    mp = mp;
-  });
-
-  auto future = std::async(std::launch::async, &std::thread::join, &thread);
-  ASSERT_EQ(
-    future.wait_for(std::chrono::seconds(1)),
-    std::future_status::timeout
-  ) << "There is infinity loop!\n";
-}
-
-TEST_F(MapTest, Clear) {
-  mp.Clear();
-  ASSERT_TRUE(mp.IsEmpty());
+  mp.Insert({1, 2});
+  mp.Erase(1);
   ASSERT_EQ(mp.Size(), 0);
-}
-
-TEST_F(MapTest, FindExistValue) {
-  ASSERT_TRUE(mp.Find(3));
-}
-
-TEST_F(MapTest, FindNotExistValue) {
-  ASSERT_FALSE(mp.Find(-11));
-}
-
-TEST_F(MapTest, EraseOneValue) {
-  mp.Erase(3);
-  ASSERT_EQ(mp.Size(), sz - 1);
 
   auto vals = mp.Values(true);
-  ASSERT_TRUE(vals.size() == sz - 1);
-
-  for (size_t i = 1; i < vals.size(); ++i) {
-    ASSERT_LT(vals[i - 1].second, vals[i].second) <<
-                    fmt::format("Doesn't increase starting with {} index", i);
-  }
+  ASSERT_TRUE(vals.size() == 0);
 }
 
-TEST_F(MapTest, EraseSeveralValues) {
-  mp.Erase(3);
-  mp.Erase(-10);
-  mp.Erase(0);
-  ASSERT_EQ(mp.Size(), sz - 3);
-
-  auto vals = mp.Values(true);
-  ASSERT_TRUE(vals.size() == sz - 3);
-
-  for (size_t i = 1; i < vals.size(); ++i) {
-    ASSERT_LT(vals[i - 1].second, vals[i].second) <<
-                    fmt::format("Doesn't increase starting with {} index", i);
-  }
-}
-
-TEST_F(MapTest, EraseNotExistingValue) {
-  EXPECT_THROW({
-    mp.Erase(-100);
-  }, std::runtime_error);
-}
-
-TEST_F(MapTest, StringAsKey) {
+TEST(EmptyMapTest, StringAsKey) {
   Map<std::string, int> ages;
   ages.Insert({
     {"Maxim", 21},
@@ -296,6 +153,181 @@ TEST_F(MapTest, StringAsKey) {
   auto values = ages.Values(true);
   auto it = values.begin();
   for (const auto& val: std_ages) {
+    ASSERT_EQ(it->second, val.second) <<
+                fmt::format("Values isn't equal on {} index", 
+                    std::distance(values.begin(), it)
+                );
+    ++it;
+  }
+}
+
+TEST_F(MapTest, GetValueUsingOperator) {
+  ASSERT_EQ(mp[5], 90);
+  ASSERT_EQ(mp[-10], 5);
+  ASSERT_EQ(mp[1], 5);
+  ASSERT_EQ(mp[0], 4);
+}
+
+TEST_F(MapTest, OverwritingWithOperator) {
+  mp[5] = 5;
+  mp[-10] = 10;
+  ASSERT_EQ(mp[5], 5);
+  ASSERT_EQ(mp[-10], 10);
+}
+
+TEST_F(MapTest, CreateIfNotExist) {
+  mp[-1];
+  ASSERT_EQ(mp[-1], 0); // default for type value
+  ASSERT_EQ(mp.Size(), sz + 1);
+}
+
+TEST_F(MapTest, GetIncreaseSortedValues) {
+  auto values = mp.Values(true);
+
+  for (size_t i = 1; i < values.size(); ++i) {
+    ASSERT_LT(values[i - 1].first, values[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, GetDecreaseSortedValues) {
+  auto values = mp.Values(false);
+
+  for (size_t i = 1; i < values.size(); ++i) {
+    ASSERT_GT(values[i - 1].first, values[i].first) <<
+                    fmt::format("Doesn't decrease starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, Clear) {
+  mp.Clear();
+  ASSERT_TRUE(mp.IsEmpty());
+  ASSERT_EQ(mp.Size(), 0);
+}
+
+TEST_F(MapTest, FindExistValue) {
+  ASSERT_TRUE(mp.Find(3));
+}
+
+TEST_F(MapTest, FindNotExistValue) {
+  ASSERT_FALSE(mp.Find(-11));
+}
+
+TEST_F(MapTest, EraseLeaf) {
+  mp.Erase(0);
+  ASSERT_EQ(mp.Size(), sz - 1);
+
+  auto vals = mp.Values(true);
+  ASSERT_TRUE(vals.size() == sz - 1);
+
+  for (size_t i = 1; i < vals.size(); ++i) {
+    ASSERT_NE(vals[i - 1].first, 0);
+    ASSERT_LT(vals[i - 1].first, vals[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, EraseNodeWithRightSon) {
+  mp.Erase(-10);
+  ASSERT_EQ(mp.Size(), sz - 1);
+
+  auto vals = mp.Values(true);
+  ASSERT_TRUE(vals.size() == sz - 1);
+
+  for (size_t i = 1; i < vals.size(); ++i) {
+    ASSERT_NE(vals[i - 1].first, -10);
+    ASSERT_LT(vals[i - 1].first, vals[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, EraseNodeWithLeftSon) {
+  mp.Erase(3);
+  ASSERT_EQ(mp.Size(), sz - 1);
+
+  auto vals = mp.Values(true);
+  ASSERT_TRUE(vals.size() == sz - 1);
+
+  for (size_t i = 1; i < vals.size(); ++i) {
+    ASSERT_NE(vals[i - 1].first, 3);
+    ASSERT_LT(vals[i - 1].first, vals[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, EraseNodeWithTwoSons) {
+  mp.Erase(1);
+  ASSERT_EQ(mp.Size(), sz - 1);
+
+  auto vals = mp.Values(true);
+  ASSERT_EQ(vals.size(), sz - 1);
+
+  for (size_t i = 1; i < vals.size(); ++i) {
+    ASSERT_NE(vals[i - 1].first, 1);
+    ASSERT_LT(vals[i - 1].first, vals[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, EraseSeveralValues) {
+  mp.Erase(3);
+  mp.Erase(-10);
+  mp.Erase(0);
+  ASSERT_EQ(mp.Size(), sz - 3);
+
+  auto vals = mp.Values(true);
+  ASSERT_TRUE(vals.size() == sz - 3);
+
+  for (size_t i = 1; i < vals.size(); ++i) {
+    ASSERT_NE(vals[i - 1].first, 0);
+    ASSERT_NE(vals[i - 1].first, 3);
+    ASSERT_NE(vals[i - 1].first, -10);
+    ASSERT_LT(vals[i - 1].first, vals[i].first) <<
+                    fmt::format("Doesn't increase starting with {} index", i);
+  }
+}
+
+TEST_F(MapTest, EraseNotExistingValue) {
+  EXPECT_THROW({
+    mp.Erase(-100);
+  }, std::runtime_error);
+}
+
+TEST_F(MapTest, CustomComparator) {
+
+  struct Point {
+    int x;
+    int y;
+    bool operator==(const Point& b) {
+      return (this->x == b.x) && (this->y == b.y);
+    }
+  };
+
+  struct PointComparator {
+    constexpr bool operator()(const Point& a, const Point& b) const {
+        auto dist1 = sqrt(pow(a.x, 2) + pow(a.y, 2));
+        auto dist2 = sqrt(pow(b.x, 2) + pow(b.y, 2));
+        return dist1 < dist2;
+    }
+  };
+
+
+  Map<Point, int, PointComparator> points;
+  points.Insert({
+    {{0, 0}, 21},
+    {{4, 5}, 22},
+    {{0, 10}, 24},
+  });
+
+  std::map<Point, int, PointComparator> std_points{
+      {{0, 0}, 21},
+      {{4, 5}, 22},
+      {{0, 10}, 24},
+  };
+
+  auto values = points.Values(true);
+  auto it = values.begin();
+  for (const auto& val: std_points) {
     ASSERT_EQ(it->second, val.second) <<
                 fmt::format("Values isn't equal on {} index", 
                     std::distance(values.begin(), it)

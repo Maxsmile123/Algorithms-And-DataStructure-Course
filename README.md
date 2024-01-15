@@ -26,7 +26,8 @@ _"Пишите код так, как будто сопровождать его 
 ## Библиотеки
 
 - [fmt](https://github.com/fmtlib/fmt) – форматированный вывод
-- [GTest](https://github.com/google/googletest) – фреймворк Google для тестирования
+- [gtest](https://github.com/google/googletest) – фреймворк Google для тестирования
+- [benchmark](https://github.com/google/benchmark) - фреймворк Google для создания бенчмарков
 - [mimalloc](https://github.com/microsoft/mimalloc) – производительный аллокатор памяти от Microsoft
 
 
