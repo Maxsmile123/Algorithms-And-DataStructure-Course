@@ -1,0 +1,49 @@
+{
+  "build_dir": "/tmp/clippy-build",
+  "repo_master": "master",
+  "solutions_master": "master",
+  "cxx_compiler_binaries": [
+    "clang++-15",
+    "clang++-14",
+    "clang++"
+  ],
+  "c_compiler_binaries": [
+    "clang-15",
+    "clang-14",
+    "clang"
+  ],
+  "format_binaries": [
+    "clang-format-15",
+    "clang-format-14",
+    "clang-format"
+  ],
+  "tidy_binaries": [
+    "clang-tidy-15",
+    "clang-tidy-14",
+    "clang-tidy"
+  ],
+  "tidy_compiler_options": [
+    "-std=c++20",
+    "-stdlib=libc++"
+  ],
+  "tidy_includes_path": "/tmp/clippy-build/Debug/_deps",
+  "tidy_common_includes": [
+    "fmt-src/include"
+  ],
+  "forbidden": [
+    {
+      "patterns": [
+        "Your code goes here",
+        "Not implemented",
+        "To be implemented"
+      ],
+      "hint": "Write code and remove this comment"
+    },
+    {
+      "patterns": [
+        "using namespace std"
+      ],
+      "hint": "Do not using this line! Never again!"
+    }
+  ]
+}

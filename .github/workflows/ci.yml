@@ -1,0 +1,65 @@
+name: C/C++ CI
+
+on:
+  pull_request:
+
+jobs:
+  Check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run cmake
+      run: |
+          mkdir build_debug
+          cd build_debug
+          cmake -DCMAKE_BUILD_TYPE=ASAN ..
+
+    - name: Run clang-format && clang-tidy
+      run: |
+            chmod +x ./tools/run_linter.sh
+            chmod +x ./tools/run-clang-format.py
+            git fetch origin main:refs/remotes/origin/main
+            [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/main
+            EXCLUDE_PATTERNS="-e 'tools/' -e 'contrib/' -e 'workflow/' "
+            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | grep -v ${EXCLUDE_PATTERNS} | tr '\n' ' ')
+            echo ${LIST_CHECK_FILES[@]}
+            List_run_test=()
+            cd build_debug
+            for file in ${LIST_CHECK_FILES[@]}
+            do
+              List_run_test+=(tasks/$(echo $file | cut -d/ -f2)/tasks/$(echo $file | cut -d/ -f4))
+            done
+            List_run_test=$(echo $List_run_test | tr ' ' '\n' | sort | uniq)
+            echo "Run for ${List_run_test[@]}"
+            if [[ -n ${List_run_test} ]]
+            then
+              for file in ${List_run_test[@]}
+              do
+                ../tools/run_linter.sh $file
+              done
+            else
+              echo "Nothing check in clang-format"
+            fi
+
+    - name: Compile && run tests
+      run: |
+          git fetch origin main:refs/remotes/origin/main
+          EXCLUDE_PATTERNS="-e 'tools' -e 'contrib' -e 'workflow' "
+          [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/main
+          LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | grep -v ${EXCLUDE_PATTERNS} | tr '\n' ' ')
+          List_run_test=()
+          cd build_debug
+          for file in ${LIST_CHECK_FILES[@]}
+          do
+            List_run_test+=($(echo $file | cut -d/ -f2)$(echo $file | cut -d/ -f4))
+          done
+          echo "${List_run_test[@]}"
+          List_run_test=$(echo ${List_run_test[@]} | tr ' ' '\n' | sort | uniq)
+          for file in ${List_run_test[@]}
+          do
+            make $file
+            chmod +x ./$file
+            ./$file
+          done
+

@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "Release"
+      ]
+    }
+  ],
+  "lint_files": ["aplusb.hpp"],
+  "submit_files": ["aplusb.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "Not implemented"
+      ],
+      "hint": "You should implement this part"
+    }
+  ]
+}
