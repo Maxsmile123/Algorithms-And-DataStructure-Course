@@ -216,7 +216,7 @@ clippy push
 Команда `clippy push` пушит коммиты из ветки текущей задачи локального репозитория решений в remote-репозиторий.
 
 
-[Документация по командам](https://gitlab.com/Lipovsky/clippy/-/blob/master/docs/commands.md)
+[Документация по командам](https://github.com/Maxsmile123/Clippy/docs/commands.md)
 
 
 Запуск джоба CI на тестирующем сервере состоит из следующих шагов:
