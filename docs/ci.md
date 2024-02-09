@@ -115,7 +115,7 @@ clippy config group 123
 # Вместо Maxim подставьте ваше имя
 # Вместо Sysoev подставьте вашу фамилию
 clippy config name.first Maxim
-clippy config name.first Sysoev
+clippy config name.last Sysoev
 ```
 
 Настройте свой ник на GitHub для ваших PR:
