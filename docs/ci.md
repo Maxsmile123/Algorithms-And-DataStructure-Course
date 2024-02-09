@@ -52,29 +52,6 @@ clippy attach https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course
 
 Этим действием вы выдадите мне доступ на просмотр вашего репозитория.
 
-#### Шаг 2. Настроить обязательность Code Review
-
-Переходим в `Branches` -> `Add branch protection rule`.
-
-В графе `Branch name pattern` пишем `master`.
-
-Ставим галочки в следующих полях:
-- [x] Require a pull request before merging
-- [x] Require status checks to pass before merging
-- [x] Require branches to be up to date before merging
-
-Жмём `Create`.
-
-<details>
-<summary>Подробнее про правила</summary>
-
-`Первое правило` обязывает мержить коммиты в ветку только через Pull Request.
-
-`Третье правило` требует обязательного прохождения проверок в CI при мерже.
-
-`Четвертое правило` требует, чтобы ваш код был синхронизирован с моим репозиторием.
-</details>
-
 ### Настраиваем локально
 
 #### Шаг 1. Смотрим конфиг
