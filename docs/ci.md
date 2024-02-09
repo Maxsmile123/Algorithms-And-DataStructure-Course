@@ -35,7 +35,7 @@ cd /workspace/Algorithms-And-DataStructure-Course
 ```shell
 clippy attach {solutions-repo-url}
 ```
-Вместо `{solutions-repo-url}` подставьте url созданного при регистрации репозитория.
+Вместо `{solutions-repo-url}` подставьте url созданного только что репозитория.
 
 Команда будет выглядеть примерно так:
 ```shell
