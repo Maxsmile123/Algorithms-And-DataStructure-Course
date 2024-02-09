@@ -60,7 +60,6 @@ clippy attach https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course
 
 Ставим галочки в следующих полях:
 - [x] Require a pull request before merging
-- [x] Require review from Code Owners
 - [x] Require status checks to pass before merging
 - [x] Require branches to be up to date before merging
 
@@ -70,8 +69,6 @@ clippy attach https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course
 <summary>Подробнее про правила</summary>
 
 `Первое правило` обязывает мержить коммиты в ветку только через Pull Request.
-
-`Второе правило` ставит в Reviewers участников из файла CODEOWNERS, т.е. меня. Это позволит мне получать уведомление о том, что ваш PR нужно посмотреть.
 
 `Третье правило` требует обязательного прохождения проверок в CI при мерже.
 
