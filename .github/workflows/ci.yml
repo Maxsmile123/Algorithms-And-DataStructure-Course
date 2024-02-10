@@ -19,7 +19,7 @@ jobs:
 
     - name: Run Cmake
       run: |
-          ./client/bin/clippy cmake --clean
+          ./client/bin/clippy cmake
 
     - name: Run clang-format && clang-tidy
       run: |
@@ -28,7 +28,7 @@ jobs:
             echo ${LIST_CHECK_FILES[@]}
             DIR=$(dirname LIST_CHECK_FILES[@])
             cd $(DIR)
-            clippy validate
+            ./client/bin/clippy validate
 
     - name: Run tests
       run: |
@@ -37,5 +37,5 @@ jobs:
         echo ${LIST_CHECK_FILES[@]}
         DIR=$(dirname LIST_CHECK_FILES[@])
         cd $(DIR)
-        clippy test
+        ./client/bin/clippy test
 
