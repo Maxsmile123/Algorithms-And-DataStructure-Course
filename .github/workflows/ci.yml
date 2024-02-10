@@ -14,7 +14,7 @@ jobs:
           git submodule update --init --recursive
           chmod +x ./install_client.sh
           chmod +x ./client/install.py
-          bash ./install_client.sh
+          echo "Y" | bash ./install_client.sh
 
     - name: Run Cmake
       run: |
