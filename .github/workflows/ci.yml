@@ -11,7 +11,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install Clippy
       run: |
-          sudo ./install_client.sh
+          git submodule update --init --recursive
+          chmod +x ./install_client.sh
+          chmod +x ./client/install.py
+          bash ./install_client.sh
 
     - name: Run Cmake
       run: |
