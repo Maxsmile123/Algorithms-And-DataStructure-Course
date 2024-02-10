@@ -19,7 +19,7 @@ jobs:
 
     - name: Run Cmake
       run: |
-          clippy cmake --clean
+          ./client/bin/clippy cmake --clean
 
     - name: Run clang-format && clang-tidy
       run: |
