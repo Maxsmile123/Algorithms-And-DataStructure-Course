@@ -35,7 +35,7 @@ cd /workspace/Algorithms-And-DataStructure-Course
 ```shell
 clippy attach {solutions-repo-url}
 ```
-Вместо `{solutions-repo-url}` подставьте url созданного при регистрации репозитория.
+Вместо `{solutions-repo-url}` подставьте url созданного только что репозитория.
 
 Команда будет выглядеть примерно так:
 ```shell
@@ -51,32 +51,6 @@ clippy attach https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course
 Перейдите во вкладку `Settings` своего репозитория. Далее переходим в `Collaborators`. Нажимаем `Add people` и пишем там мой ник: ```Maxsmile123```.
 
 Этим действием вы выдадите мне доступ на просмотр вашего репозитория.
-
-#### Шаг 2. Настроить обязательность Code Review
-
-Переходим в `Branches` -> `Add branch protection rule`.
-
-В графе `Branch name pattern` пишем `master`.
-
-Ставим галочки в следующих полях:
-- [x] Require a pull request before merging
-- [x] Require review from Code Owners
-- [x] Require status checks to pass before merging
-- [x] Require branches to be up to date before merging
-
-Жмём `Create`.
-
-<details>
-<summary>Подробнее про правила</summary>
-
-`Первое правило` обязывает мержить коммиты в ветку только через Pull Request.
-
-`Второе правило` ставит в Reviewers участников из файла CODEOWNERS, т.е. меня. Это позволит мне получать уведомление о том, что ваш PR нужно посмотреть.
-
-`Третье правило` требует обязательного прохождения проверок в CI при мерже.
-
-`Четвертое правило` требует, чтобы ваш код был синхронизирован с моим репозиторием.
-</details>
 
 ### Настраиваем локально
 
@@ -141,7 +115,7 @@ clippy config group 123
 # Вместо Maxim подставьте ваше имя
 # Вместо Sysoev подставьте вашу фамилию
 clippy config name.first Maxim
-clippy config name.first Sysoev
+clippy config name.last Sysoev
 ```
 
 Настройте свой ник на GitHub для ваших PR:
@@ -216,7 +190,7 @@ clippy push
 Команда `clippy push` пушит коммиты из ветки текущей задачи локального репозитория решений в remote-репозиторий.
 
 
-[Документация по командам](https://gitlab.com/Lipovsky/clippy/-/blob/master/docs/commands.md)
+[Документация по командам](https://github.com/Maxsmile123/Clippy/blob/master/docs%2Fcommands.md)
 
 
 Запуск джоба CI на тестирующем сервере состоит из следующих шагов:
