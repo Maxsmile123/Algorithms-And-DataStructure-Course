@@ -15,6 +15,7 @@ jobs:
           chmod +x ./install_client.sh
           chmod +x ./client/install.py
           echo "Y" | bash ./install_client.sh
+          source ~/.bashrc
 
     - name: Run Cmake
       run: |
