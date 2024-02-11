@@ -23,7 +23,8 @@ jobs:
 
     - name: Run clang-format && clang-tidy
       run: |
-            LIST_CHECK_FILES=$(git diff --name-only main | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            git fetch origin master:refs/remotes/origin/master
+            LIST_CHECK_FILES=$(git diff --name-only master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
             echo ${LIST_CHECK_FILES[@]}
             DIR=$(dirname LIST_CHECK_FILES[@])
             cd $DIR
