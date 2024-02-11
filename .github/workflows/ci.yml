@@ -23,8 +23,7 @@ jobs:
 
     - name: Run clang-format && clang-tidy
       run: |
-            [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/master
-            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            LIST_CHECK_FILES=$(git diff --name-only master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
             echo ${LIST_CHECK_FILES[@]}
             DIR=$(dirname LIST_CHECK_FILES[@])
             cd $DIR
