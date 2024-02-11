@@ -13,7 +13,9 @@ jobs:
       run: |
           git submodule update --init --recursive
           chmod +x ./install_client.sh
+          chmod +x ./install_deps.sh
           chmod +x ./client/install.py
+          bash ./install_deps.sh
           echo "Y" | bash ./install_client.sh
           source ~/.bashrc
 
