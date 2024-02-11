@@ -30,7 +30,7 @@ jobs:
             do
               cd $(dirname $file)
             done
-            ./client/bin/clippy validate
+            ../../../client/bin/clippy validate
 
     - name: Run tests
       run: |
@@ -41,5 +41,5 @@ jobs:
             do
               cd $(dirname $file)
             done
-            ./client/bin/clippy test
+            ../../../client/bin/clippy test
 
