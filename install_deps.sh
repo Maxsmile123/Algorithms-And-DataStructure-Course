@@ -17,15 +17,14 @@ sudo apt-get install -y \
         git \
         linux-tools-common \
         linux-tools-generic \
-        g++-12 \
-        clang-14 \
-        clang-format-14 \
-        clang-tidy-14 \
-        libclang-rt-14-dev \
-        libc++-14-dev \
-        libc++abi-14-dev \
-        clangd-14 \
-        lldb-14 \
+        g++ \
+        clang \
+        clang-format \
+        clang-tidy \
+        libc++-dev \
+        libc++abi-dev \
+        clangd \
+        lldb \
         gdb \
         binutils-dev \
         libdwarf-dev \
@@ -33,14 +32,11 @@ sudo apt-get install -y \
         python3 \
         python3-pip \
         python3-venv \
-        ca-certificates \
-        openssh-server \
         vim \
         autoconf
 
 pip3 install \
         click \
         gitpython \
-        python-gitlab \
         termcolor \
         virtualenv
