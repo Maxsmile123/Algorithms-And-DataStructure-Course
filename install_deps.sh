@@ -21,12 +21,8 @@ sudo apt-get install -y \
         clang \
         clang-format \
         clang-tidy \
-        libc++-dev \
-        libc++abi-dev \
+        libc++ \
         gdb \
-        binutils-dev \
-        libdwarf-dev \
-        libdw-dev \
         python3 \
         python3-pip \
         python3-venv \
