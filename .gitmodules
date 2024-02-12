@@ -1,3 +1,8 @@
 [submodule "client"]
 	path = client
 	url = https://github.com/Maxsmile123/Clippy
+
+[submodule "docker/client"]
+	path = docker/client
+	url = https://gitlab.com/Lipovsky/pequod
+

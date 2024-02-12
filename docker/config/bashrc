@@ -1,0 +1,28 @@
+cat <<EOF
+Hi, $(whoami)!
+Welcome to Docker container '${REPO_NAME}'!
+(___-){
+===================================
+
+Type 'exit' to exit =)
+EOF
+
+# ------------------------------------------------------------------------------
+
+# Default bash init
+
+source ~/.bashrc
+
+# ------------------------------------------------------------------------------
+
+# Run SSH agent and add key
+
+KEY="/workspace/${REPO_NAME}/docker/config/keys/gitlab-private-key"
+eval $(ssh-agent -s) > /dev/null
+ssh-add $KEY >/dev/null 2>&1
+
+# ------------------------------------------------------------------------------
+
+# Starting directory
+
+cd "/workspace/${REPO_NAME}"
