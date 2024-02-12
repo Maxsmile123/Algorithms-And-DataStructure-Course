@@ -108,13 +108,13 @@ source ~/.bashrc
 clippy hi
 ```
 
-*Если у вас не найден clang++, то пропишите:*
+*Если у вас не найден clang++, то выполните:*
 1. Выйдите из контейнера - exit
 2. Пропишите в терминале Windows/OS X/Linux: 
 ```shell
 docker exec -u 0 -it containerName bash
 ```
-Где вместо containerName подставьте имя только что созданного контейнера (имя репозитория).
+Где вместо containerName подставьте имя только что созданного контейнера (имя репозитория).</br>
 3. Пропишите
 ```shell
 sudo ln -s /usr/bin/clang-17 /usr/bin/clang
