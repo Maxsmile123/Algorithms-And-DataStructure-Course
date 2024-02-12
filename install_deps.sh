@@ -17,11 +17,11 @@ sudo apt-get install -y \
         git \
         linux-tools-common \
         linux-tools-generic \
-        g++ \
-        clang \
+        g++-12 \
+        clang++-12 \
         clang-format \
         clang-tidy \
-        libc++-14-dev \
+        libstdc++-12-dev
         gdb \
         python3 \
         python3-pip \
