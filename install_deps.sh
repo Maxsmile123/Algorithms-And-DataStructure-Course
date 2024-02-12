@@ -21,7 +21,7 @@ sudo apt-get install -y \
         clang \
         clang-format \
         clang-tidy \
-        libc++-14 \
+        libc++-14-dev \
         gdb \
         python3 \
         python3-pip \
