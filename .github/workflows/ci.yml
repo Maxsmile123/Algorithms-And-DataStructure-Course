@@ -30,6 +30,7 @@ jobs:
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
             do
+              echo $(dirname $file)
               cd $(dirname $file)
             done
             $CUR_DIR/client/bin/clippy validate
