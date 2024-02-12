@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    }
+  ],
+  "lint_files": ["filesystem"],
+  "submit_files": ["filesystem"],
+  "forbidden": [
+    {
+      "patterns": [
+        "std::map"
+      ],
+      "hint": "Don't use std::map -> use custom"
+    },
+    {
+      "patterns": [
+        "std::sort"
+      ],
+      "hint": "Don't use std::sort"
+    }
+  ]
+}

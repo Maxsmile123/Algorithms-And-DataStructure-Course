@@ -1,0 +1,84 @@
+- group:    Tutorial
+  start:    01-02-2023 12:00
+  deadline: 23-02-2023 23:59
+  tasks:
+    - task: tutorial/aplusb
+      score: 100
+
+- group:    Bash
+  start:    16-02-2023 12:00
+  deadline: 23-02-2023 23:59
+  tasks:
+    - task: bash
+      score: 100
+
+# Iterators and Templates. Class
+- group:    Lists
+  start:    23-02-2023 12:00
+  deadline: 02-03-2023 23:59
+  tasks:
+    - task: lists/list
+      score: 100
+    - task: lists/forward
+      score: 200
+
+# Smart Pointers
+- group:    Tree
+  start:    02-03-2023 21:00
+  deadline: 09-03-2023 23:59
+  tasks:
+    - task: tree/bst
+      score: 200
+    - task: tree/iterators
+      score: 100
+    - task: tree/NTree
+      score: 100
+
+# Allocators and Move
+- group:    Vector
+  start:    02-03-2023 21:00
+  deadline: 16-03-2023 23:59
+  tasks:
+    - task: vector/vector
+      score: 200
+    - task: vector/allocator
+      score: 200
+
+# Design. Container as template parametr
+- group:    Abstract
+  start:    02-03-2023 21:00
+  deadline: 16-03-2023 23:59
+  tasks:
+    - task: abstract/deque
+      score: 200
+    - task: abstract/queue
+      score: 200
+    - task: abstract/stack
+      score: 200
+
+# Hash
+- group:    Hash Table
+  start:    02-03-2023 21:00
+  deadline: 16-03-2023 23:59
+  tasks:
+    - task: hashtable/HashTable
+      score: 200
+    - task: hashtable/hash
+      score: 200
+
+# Sorting Algorithms
+- group:    Sorting
+  start:    02-03-2023 21:00
+  deadline: 16-03-2023 23:59
+  tasks:
+    - task: sorting/sort
+      score: 200
+    - task: sorting/heap
+      score: 200
+
+- group:    My Ok
+  start:    21-04-2023 12:00
+  deadline: 01-06-2023 23:59
+  tasks:
+    - task: ok/ok
+      score: 10

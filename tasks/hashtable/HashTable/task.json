@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["unordered_set.hpp"],
+  "submit_files": ["unordered_set.hpp"],
+  "forbidden": [
+  ]
+}

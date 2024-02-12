@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["deque.hpp"],
+  "submit_files": ["deque.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "std::deque",
+        "sleep_for",
+        "SpinWait"
+      ],
+      "hint": "Don't use std::deque"
+    },
+  ]
+}

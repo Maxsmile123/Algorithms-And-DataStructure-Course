@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": ["Debug"]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "FaultyFibers",
+        "Debug",
+        "FaultyThreadsASan",
+        "FaultyThreadsTSan"
+      ]
+    }
+  ],
+  "lint_files": ["queue.hpp"],
+  "submit_files": ["queue.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "std::queue"
+      ],
+      "hint": "Don't use std::queue"
+    }
+  ]
+}
