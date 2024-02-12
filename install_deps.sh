@@ -23,8 +23,6 @@ sudo apt-get install -y \
         clang-tidy \
         libc++-dev \
         libc++abi-dev \
-        clangd \
-        lldb \
         gdb \
         binutils-dev \
         libdwarf-dev \
