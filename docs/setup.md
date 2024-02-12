@@ -108,6 +108,24 @@ source ~/.bashrc
 clippy hi
 ```
 
+*Если у вас не найден clang++, то пропишите:*
+1. Выйдите из контейнера - exit
+2. Пропишите в терминале Windows/OS X/Linux: 
+```shell
+docker exec -u 0 -it containerName bash
+```
+Где вместо containerName подставьте имя только что созданного контейнера (имя репозитория).
+3. Пропишите
+```shell
+sudo ln -s /usr/bin/clang-17 /usr/bin/clang
+sudo ln -s /usr/bin/clang++-17 /usr/bin/clang++
+sudo ln -s /usr/bin/clang-tidy-17 /usr/bin/clang-tidy
+sudo ln -s /usr/bin/clangd-17 /usr/bin/clangd
+sudo ln -s /usr/bin/clang-format-17 /usr/bin/clang-format
+
+```
+4. Выйдите и попробуйте снова. Clang++ будет найден.
+
 ### Шаг 6
 
 Теперь у вас есть клиент для работы с курсом, он называется `clippy`.
