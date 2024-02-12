@@ -44,7 +44,7 @@ docker run hello-world
 Вы успешно вошли в контейнер, если видите приветствие:
 ```
 Hi, ${USERNAME}!
-Welcome to Docker container 'AlgorithmaAndDataStructureCourse'!
+Welcome to Docker container 'AlgorithmsAndDataStructureCourse'!
 (___-){
 ===================================
 
