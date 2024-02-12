@@ -11,27 +11,39 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install Clippy
       run: |
-          ./install_client.sh
+          git submodule update --init --recursive
+          chmod +x ./install_client.sh
+          chmod +x ./install_deps.sh
+          chmod +x ./client/install.py
+          bash ./install_deps.sh
+          echo "Y" | bash ./install_client.sh
 
     - name: Run Cmake
       run: |
-          clippy cmake --clean
+          ./client/bin/clippy cmake
 
     - name: Run clang-format && clang-tidy
       run: |
-            [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=master
-            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            git fetch origin master:refs/remotes/origin/master
+            LIST_CHECK_FILES=$(git diff --name-only origin/master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
             echo ${LIST_CHECK_FILES[@]}
-            DIR=$(dirname LIST_CHECK_FILES[@])
-            cd $(DIR)
-            clippy validate
+            CUR_DIR=$(pwd)
+            for file in ${LIST_CHECK_FILES[@]}
+            do
+              echo $(dirname $file)
+              cd $(dirname $file)
+            done
+            $CUR_DIR/client/bin/clippy validate
 
     - name: Run tests
       run: |
-        [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=master
-        LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
-        echo ${LIST_CHECK_FILES[@]}
-        DIR=$(dirname LIST_CHECK_FILES[@])
-        cd $(DIR)
-        clippy test
+            git fetch origin master:refs/remotes/origin/master
+            LIST_CHECK_FILES=$(git diff --name-only origin/master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            echo ${LIST_CHECK_FILES[@]}
+            CUR_DIR=$(pwd)
+            for file in ${LIST_CHECK_FILES[@]}
+            do
+              cd $(dirname $file)
+            done
+            $CUR_DIR/client/bin/clippy test
 

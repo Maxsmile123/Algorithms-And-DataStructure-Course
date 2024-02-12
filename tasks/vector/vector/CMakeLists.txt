@@ -1,5 +1,5 @@
 begin_task()
-set_task_sources(map.hpp)
+set_task_sources(vector.hpp)
 add_task_test(unit_tests tests/unit.cpp)
 add_task_test(stress_tests tests/stress.cpp)
 end_task()
