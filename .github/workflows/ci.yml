@@ -25,25 +25,26 @@ jobs:
     - name: Run clang-format && clang-tidy
       run: |
             git fetch origin master:refs/remotes/origin/master
-            LIST_CHECK_FILES=$(git diff --name-only origin/master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            LIST_CHECK_FILES=$(git diff --name-only --diff-filter=ACMR --relative origin/master -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
             do
-              echo $(dirname $file)
-              cd $(dirname $file)
+              cd $file
+              $CUR_DIR/client/bin/clippy validate
+              cd $CUR_DIR
             done
-            $CUR_DIR/client/bin/clippy validate
 
     - name: Run tests
       run: |
             git fetch origin master:refs/remotes/origin/master
-            LIST_CHECK_FILES=$(git diff --name-only origin/master | grep '\.cpp\|\.h\|\.hpp' | head -n 1)
+            LIST_CHECK_FILES=$(git diff --name-only --diff-filter=ACMR --relative origin/master -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
             do
-              cd $(dirname $file)
+              cd $file
+              $CUR_DIR/client/bin/clippy test
+              cd $CUR_DIR
             done
-            $CUR_DIR/client/bin/clippy test
 
