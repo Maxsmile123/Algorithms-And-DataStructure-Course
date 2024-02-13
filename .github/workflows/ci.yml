@@ -24,7 +24,6 @@ jobs:
 
     - name: Run clang-format && clang-tidy
       run: |
-            git fetch master
             LIST_CHECK_FILES=$(git diff --name-only master -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
@@ -37,7 +36,6 @@ jobs:
 
     - name: Run tests
       run: |
-            git fetch master
             LIST_CHECK_FILES=$(git diff --name-only master -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
