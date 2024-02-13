@@ -25,7 +25,7 @@ jobs:
     - name: Run clang-format && clang-tidy
       run: |
             git fetch origin master:refs/remotes/origin/master
-            [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/master
+            BRANCH_VAR=$(git rev-parse origin/master)
             LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
@@ -39,7 +39,7 @@ jobs:
     - name: Run tests
       run: |
             git fetch origin master:refs/remotes/origin/master
-            [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/master
+            BRANCH_VAR=$(git rev-parse origin/master)
             LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
