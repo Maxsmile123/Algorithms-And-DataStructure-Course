@@ -17,11 +17,6 @@ jobs:
           chmod +x ./client/install.py
           sudo bash ./docker/image/install_deps.sh
           echo "Y" | bash ./install_client.sh
-          sudo ln -s /usr/bin/clang-17 /usr/bin/clang
-          sudo ln -s /usr/bin/clang++-17 /usr/bin/clang++
-          sudo ln -s /usr/bin/clang-tidy-17 /usr/bin/clang-tidy
-          sudo ln -s /usr/bin/clangd-17 /usr/bin/clangd
-          sudo ln -s /usr/bin/clang-format-17 /usr/bin/clang-format
 
     - name: Run Cmake
       run: |
