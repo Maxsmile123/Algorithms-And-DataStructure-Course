@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "Release"
+      ]
+    }
+  ],
+  "lint_files": ["list.hpp"],
+  "submit_files": ["list.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "Not implemented"
+      ],
+      "hint": "You should implement this part"
+    },
+    {
+      "patterns": [
+        "std::list",
+        "std::vector",
+        "std::forward_list"
+      ],
+      "hint": "Don't use STL containers"
+    }
+  ]
+}
