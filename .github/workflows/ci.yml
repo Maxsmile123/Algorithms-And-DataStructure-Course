@@ -15,7 +15,7 @@ jobs:
           chmod +x ./install_client.sh
           chmod +x ./docker/image/install_deps.sh
           chmod +x ./client/install.py
-          bash ./docker/image/install_deps.sh
+          sudo bash ./docker/image/install_deps.sh
           echo "Y" | bash ./install_client.sh
 
     - name: Run Cmake
