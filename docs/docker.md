@@ -19,11 +19,14 @@ docker run hello-world
 
 ### OS X / Windows
 
-Скачайте, установите и запустите [Docker Desktop](https://docs.docker.com/desktop/install/).
+Скачайте, установите и запустите Docker Desktop:   
+[Mac OS](https://docs.docker.com/desktop/install/mac-install/)   
+[Windows](https://docs.docker.com/desktop/install/windows-install/)
 
 Убедитесь, что в тулбаре появился значок с 🐳 китом.
 
-Запустите Docker Desktop. В настройках установите использовать WSL2 как бэкенд.
+Запустите Docker Desktop.    
+**Для Windows**: В настройках установите использовать WSL2 как бэкенд.
 
 ## ARM
 
