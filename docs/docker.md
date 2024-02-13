@@ -31,7 +31,10 @@ docker run hello-world
 
 ## Создание контейнера
 
-Запустите в WSL/Mac скрипт `create` из `docker/client/bin`.
+Запустите в WSL/Mac скрипт `create` из `docker/client/bin`:
+```shell
+./docker/client/bin/create
+```
 
 Созданный контейнер будет называться так же, как и репозиторий курса.
 
