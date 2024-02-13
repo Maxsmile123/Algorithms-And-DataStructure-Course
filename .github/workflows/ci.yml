@@ -26,7 +26,7 @@ jobs:
       run: |
             git fetch origin master:refs/remotes/origin/master
             [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/master
-            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
+            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
@@ -40,7 +40,7 @@ jobs:
       run: |
             git fetch origin master:refs/remotes/origin/master
             [[ -z "${GITHUB_BASE_REF}" ]] && BRANCH_VAR=HEAD~1 || BRANCH_VAR=origin/master
-            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} -- '*.cpp' '*.hpp' '*.h' | xargs dirname | sort -u)
+            LIST_CHECK_FILES=$(git diff --name-only ${BRANCH_VAR} | grep '\.cpp\|\.h\|\.hpp' | xargs dirname | sort -u)
             echo ${LIST_CHECK_FILES[@]}
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
