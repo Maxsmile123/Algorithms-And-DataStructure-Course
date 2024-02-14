@@ -149,25 +149,6 @@ endfunction()
 
 # --------------------------------------------------------------------
 
-# Benchmark
-
-function(add_task_benchmark BINARY_NAME)
-    get_task_target(BENCH_NAME ${BINARY_NAME})
-
-    prepend(BENCH_SOURCES "${TASK_DIR}/" ${ARGN})
-    add_task_executable(${BENCH_NAME} ${BENCH_SOURCES})
-    target_link_libraries(${BENCH_NAME} benchmark)
-    # --benchmark_counters_tabular=true
-
-    if(${TOOL_BUILD})
-        get_task_target(RUN_BENCH_TARGET "run_benchmark")
-        add_custom_target(${RUN_BENCH_TARGET} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${BENCH_NAME})
-        add_dependencies(${RUN_BENCH_TARGET} ${BENCH_NAME})
-    endif()
-endfunction()
-
-# --------------------------------------------------------------------
-
 # Epilogue
 
 function(end_task)
