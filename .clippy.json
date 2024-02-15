@@ -3,23 +3,23 @@
   "repo_master": "master",
   "solutions_master": "master",
   "cxx_compiler_binaries": [
+    "clang++-17",
     "clang++-15",
-    "clang++-14",
     "clang++"
   ],
   "c_compiler_binaries": [
+    "clang-17",
     "clang-15",
-    "clang-14",
     "clang"
   ],
   "format_binaries": [
+    "clang-format-17",
     "clang-format-15",
-    "clang-format-14",
     "clang-format"
   ],
   "tidy_binaries": [
+    "clang-tidy-17",
     "clang-tidy-15",
-    "clang-tidy-14",
     "clang-tidy"
   ],
   "tidy_compiler_options": [
