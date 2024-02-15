@@ -31,7 +31,7 @@ jobs:
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
             do
-              cd $file
+              cd $CUR_DIR/tasks/$file
               $CUR_DIR/client/bin/clippy validate
               cd $CUR_DIR
             done
@@ -45,7 +45,7 @@ jobs:
             CUR_DIR=$(pwd)
             for file in ${LIST_CHECK_FILES[@]}
             do
-              cd $file
+              cd $CUR_DIR/tasks/$file
               $CUR_DIR/client/bin/clippy test
               cd $CUR_DIR
             done
