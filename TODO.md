@@ -1,7 +1,7 @@
 # TODO
 
 ## Critical
-- [ ] Clippy коммитит задачу не в папку tasks
+- [x] Clippy коммитит задачу не в папку tasks
 
 ## BackLog
 - [x] CI падает, если нет cpp/h/hpp файлов
