@@ -131,7 +131,7 @@ clippy config github.user Maxsmile123TEST
 
 Переходим в директорию с задачей:
 ```shell
-cd tasks/lists/list
+cd tasks/tutorial/aplusb/
 ```
 
 #### Шаг 2
