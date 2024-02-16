@@ -18,6 +18,25 @@ docker rmi -f $(docker images -a -q)
 
 ---
 
+
+#### Не найден clang++ в докер контейнере:
+
+1. Выйдите из контейнера - exit
+2. Пропишите в терминале Windows/OS X/Linux: 
+```shell
+docker exec -u 0 -it containerName bash
+```
+Где вместо containerName подставьте имя только что созданного контейнера (имя репозитория).</br>
+3. Пропишите
+```shell
+sudo ln -s /usr/bin/clang-17 /usr/bin/clang
+sudo ln -s /usr/bin/clang++-17 /usr/bin/clang++
+sudo ln -s /usr/bin/clang-tidy-17 /usr/bin/clang-tidy
+sudo ln -s /usr/bin/clangd-17 /usr/bin/clangd
+sudo ln -s /usr/bin/clang-format-17 /usr/bin/clang-format
+
+```
+
 #### Как отключить запуск тестов в подпроцессе (например, для запуска тестов с отладчиком)?
 
 Запустите исполняемый файл с тестами с флагами командной строки `--disable_forks` и `--disable_time_limits`.
