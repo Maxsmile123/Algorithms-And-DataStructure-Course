@@ -5,6 +5,7 @@
 ### Linux
 
 ```shell
+sudo apt update
 sudo apt install -y docker docker-compose bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
