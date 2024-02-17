@@ -4,4 +4,5 @@
 - [Как сдавать задачи](ci.md)
 - [Style Guide](style_guide.md)
 - [Полезные ссылки](links.md)
-- [Полезные ссылки](faq.md)
+- [Установка Docker](docker.md)
+- [FAQ](faq.md)
