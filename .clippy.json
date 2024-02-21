@@ -43,7 +43,7 @@
       "patterns": [
         "using namespace std"
       ],
-      "hint": "Do not using this line! Never again!"
+      "hint": "Do not use this line! Never again!"
     }
   ]
 }
