@@ -10,6 +10,46 @@
 
 #include "../vector.hpp"
 
+class Singleton {
+public:
+    Singleton() = delete;
+    Singleton(const Singleton&) = delete;
+    Singleton(Singleton&&) = delete;
+    Singleton& operator=(const Singleton&) = delete;
+    Singleton&& operator=(Singleton&&) = delete;
+
+    static Singleton* getInstance() {
+        if (instance == nullptr) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+private:
+    static Singleton* instance;
+};
+
+Singleton* Singleton::instance = nullptr;
+
+
+class MemoryUseObject {
+public:
+    MemoryUseObject() {
+        a = malloc(100);
+    };
+
+    ~MemoryUseObject(){
+        free(a);
+    }
+
+
+private:
+    void* a;
+
+}
+
+
+
 class VectorTest : public testing::Test {
 protected:
     void SetUp() override {
@@ -27,277 +67,72 @@ protected:
     const size_t sz = 7;
 };
 
-TEST(EmptyMapTest, DefaultConstructor) {
+TEST(EmptyVectorTest, DefaultConstructor) {
     Vector<int> vec;
     ASSERT_TRUE(vec.IsEmpty()) << "Default vector isn't empty!";
+    ASSERT_EQ(vec.Capacity(), 0) << "Vector should not allocate memory in the default constructor!";
+    ASSERT_EQ(vec.Data(), nullptr) << "Vector should not allocate memory in the default constructor!";
 }
 
-TEST(EmptyMapTest, InsertRoot) {
-    Map<int, int> map;
-    map.Insert({1, 5});
-    ASSERT_EQ(map.Size(), 1);
-
-    auto vals = map.Values(true);
-
-    ASSERT_EQ(vals.size(), 1);
-    ASSERT_EQ(vals[0].first, 1);
-    ASSERT_EQ(vals[0].second, 5);
-}
-
-TEST(EmptyMapTest, InsertRootLeftRight) {
-    Map<int, int> map;
-    map.Insert({1, 1});
-    map.Insert({3, 2});
-    map.Insert({0, 0});
-
-    ASSERT_EQ(map.Size(), 3);
-
-    auto vals = map.Values(true);
-    ASSERT_EQ(vals.size(), 3);
-
-    for (size_t i = 0; i < vals.size(); ++i) {
-        ASSERT_EQ(vals[i].second, i) << fmt::format("Values isn't equal on {} index", i);
+TEST(EmptyVectorTest, AssignIntConstructor) {
+    Vector<int> vec(10, 5);
+    ASSERT_EQ(vec.Size(), 10);
+    for (size_t i = 0; i < 10; ++i) {
+        ASSERT_EQ(vec[i], 5);
     }
 }
 
-TEST(EmptyMapTest, InsertIncreaseSeq) {
-    Map<int, int> map;
-    map.Insert({{1, 0}, {3, 1}, {5, 2}, {10, 3}, {90, 4}});
-    ASSERT_EQ(map.Size(), 5);
-
-    auto vals = map.Values(true);
-    ASSERT_EQ(vals.size(), 5);
-
-    for (size_t i = 0; i < vals.size(); ++i) {
-        ASSERT_EQ(vals[i].second, i) << fmt::format("Values isn't equal on {} index", i);
+TEST_F(VectorTest, CopyConstructor) {
+    Vector<int> vec1 = vec;
+    ASSERT_NE(&vec1, &vec) << "Copy constructor must do copy!\n";
+    ASSERT_EQ(vec1.Size(), vec.Size());
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec1[i], vec[i]) << "Values must be equal!";
     }
 }
 
-TEST(EmptyMapTest, SimpleSwap) {
-    Map<int, int> map;
-    map[1] = 5;
-
-    Map<int, int> dict;
-    dict[1] = 15;
-    dict[2] = 14;
-
-    size_t old_mp_size = map.Size();
-    size_t old_dict_size = dict.Size();
-
-    map.Swap(dict);
-
-    ASSERT_EQ(dict.Size(), old_mp_size);
-    ASSERT_EQ(map.Size(), old_dict_size);
-
-    ASSERT_EQ(dict[1], 5);
-    ASSERT_EQ(map[1], 15);
-    ASSERT_EQ(map[2], 14);
-}
-
-TEST(EmptyMapTest, StdSwap) {
-    Map<int, int> map;
-    map[1] = 5;
-
-    Map<int, int> dict;
-    dict[1] = 15;
-    dict[2] = 14;
-
-    size_t old_mp_size = map.Size();
-    size_t old_dict_size = dict.Size();
-
-    std::swap(map, dict);
-
-    ASSERT_EQ(dict.Size(), old_mp_size);
-    ASSERT_EQ(map.Size(), old_dict_size);
-
-    ASSERT_EQ(dict[1], 5);
-    ASSERT_EQ(map[1], 15);
-    ASSERT_EQ(map[2], 14);
-}
-
-TEST(EmptyMapTest, EraseOnlyRoot) {
-    Map<int, int> mp;
-    mp.Insert({1, 2});
-    mp.Erase(1);
-    ASSERT_EQ(mp.Size(), 0);
-
-    auto vals = mp.Values(true);
-    ASSERT_TRUE(vals.empty());
-}
-
-TEST(EmptyMapTest, StringAsKey) {
-    Map<std::string, int> ages;
-    ages.Insert({{"Maxim", 21}, {"Danya", 22}, {"Veronika", 24}, {"Anna", 19}});
-    std::map<std::string, int> std_ages{{"Maxim", 21}, {"Danya", 22}, {"Veronika", 24}, {"Anna", 19}};
-    auto values = ages.Values(true);
-    auto it = values.begin();
-    for (const auto& val : std_ages) {
-        ASSERT_EQ(it->second, val.second)
-            << fmt::format("Values isn't equal on {} index", std::distance(values.begin(), it));
-        ++it;
+TEST(EmptyVectorTest, CopyConstructorWithPointers) {
+    int a = 1;
+    int b = 2;
+    int c = 3;
+    Vector<int*> vec1;
+    vec1.PushBack(&a);
+    vec1.PushBack(&b);
+    vec1.PushBack(&c);
+    Vector<int*> vec = vec1;
+    ASSERT_NE(&vec1, &vec) << "Copy constructor must do copy!\n";
+    ASSERT_EQ(vec1.Size(), vec.Size());
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(*vec1[i], *vec[i]) << "Values must be equal!";
+        ASSERT_EQ(vec1[i], vec[i]) << "Need copy!";
     }
 }
 
-TEST_F(MapTest, GetValueUsingOperator) {
-    ASSERT_EQ(mp[5], 90);
-    ASSERT_EQ(mp[-10], 5);
-    ASSERT_EQ(mp[1], 5);
-    ASSERT_EQ(mp[0], 4);
-}
-
-TEST_F(MapTest, OverwritingWithOperator) {
-    mp[5] = 5;
-    mp[-10] = 10;
-    ASSERT_EQ(mp[5], 5);
-    ASSERT_EQ(mp[-10], 10);
-}
-
-TEST_F(MapTest, CreateIfNotExist) {
-    mp[-1];
-    ASSERT_EQ(mp[-1], 0);  // default for type value
-    ASSERT_EQ(mp.Size(), sz + 1);
-}
-
-TEST_F(MapTest, GetIncreaseSortedValues) {
-    auto values = mp.Values(true);
-
-    for (size_t i = 1; i < values.size(); ++i) {
-        ASSERT_LT(values[i - 1].first, values[i].first) << fmt::format("Doesn't increase starting with {} index", i);
+TEST_F(VectorTest, MoveConstructor) {
+    Vector<int> vec1 = std::move(vec);
+    ASSERT_EQ(vec1.Size(), sz);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec1[i], i + 1);
+        ASSERT_EQ(vec[i], 0);
     }
 }
 
-TEST_F(MapTest, GetDecreaseSortedValues) {
-    auto values = mp.Values(false);
-
-    for (size_t i = 1; i < values.size(); ++i) {
-        ASSERT_GT(values[i - 1].first, values[i].first) << fmt::format("Doesn't decrease starting with {} index", i);
-    }
+TEST(EmptyVectorTest, CopyOperator) {
+    Vector<MemoryUseObject> vec1;
+    vec1.PushBack(MemoryUseObject());
+    Vector<MemoryUseObject> vec;
+    vec1 = vec;
+    ASSERT_NE(&vec1, &vec) << "Copy constructor must do copy!\n";
+    ASSERT_EQ(vec1.Size(), vec.Size());
 }
 
-TEST_F(MapTest, Clear) {
-    mp.Clear();
-    ASSERT_TRUE(mp.IsEmpty());
-    ASSERT_EQ(mp.Size(), 0);
-}
-
-TEST_F(MapTest, FindExistValue) {
-    ASSERT_TRUE(mp.Find(3));
-}
-
-TEST_F(MapTest, FindNotExistValue) {
-    ASSERT_FALSE(mp.Find(-11));
-}
-
-TEST_F(MapTest, EraseLeaf) {
-    mp.Erase(0);
-    ASSERT_EQ(mp.Size(), sz - 1);
-
-    auto vals = mp.Values(true);
-    ASSERT_EQ(vals.size(), sz - 1);
-
-    for (size_t i = 1; i < vals.size(); ++i) {
-        ASSERT_NE(vals[i - 1].first, 0);
-        ASSERT_LT(vals[i - 1].first, vals[i].first) << fmt::format("Doesn't increase starting with {} index", i);
-    }
-}
-
-TEST_F(MapTest, EraseNodeWithRightSon) {
-    mp.Erase(-10);
-    ASSERT_EQ(mp.Size(), sz - 1);
-
-    auto vals = mp.Values(true);
-    ASSERT_EQ(vals.size(), sz - 1);
-
-    for (size_t i = 1; i < vals.size(); ++i) {
-        ASSERT_NE(vals[i - 1].first, -10);
-        ASSERT_LT(vals[i - 1].first, vals[i].first) << fmt::format("Doesn't increase starting with {} index", i);
-    }
-}
-
-TEST_F(MapTest, EraseNodeWithLeftSon) {
-    mp.Erase(3);
-    ASSERT_EQ(mp.Size(), sz - 1);
-
-    auto vals = mp.Values(true);
-    ASSERT_EQ(vals.size(), sz - 1);
-
-    for (size_t i = 1; i < vals.size(); ++i) {
-        ASSERT_NE(vals[i - 1].first, 3);
-        ASSERT_LT(vals[i - 1].first, vals[i].first) << fmt::format("Doesn't increase starting with {} index", i);
-    }
-}
-
-TEST_F(MapTest, EraseNodeWithTwoSons) {
-    mp.Erase(1);
-    ASSERT_EQ(mp.Size(), sz - 1);
-
-    auto vals = mp.Values(true);
-    ASSERT_EQ(vals.size(), sz - 1);
-
-    for (size_t i = 1; i < vals.size(); ++i) {
-        ASSERT_NE(vals[i - 1].first, 1);
-        ASSERT_LT(vals[i - 1].first, vals[i].first) << fmt::format("Doesn't increase starting with {} index", i);
-    }
-}
-
-TEST_F(MapTest, EraseSeveralValues) {
-    mp.Erase(3);
-    mp.Erase(-10);
-    mp.Erase(0);
-    ASSERT_EQ(mp.Size(), sz - 3);
-
-    auto vals = mp.Values(true);
-    ASSERT_EQ(vals.size(), sz - 3);
-
-    for (size_t i = 1; i < vals.size(); ++i) {
-        ASSERT_NE(vals[i - 1].first, 0);
-        ASSERT_NE(vals[i - 1].first, 3);
-        ASSERT_NE(vals[i - 1].first, -10);
-        ASSERT_LT(vals[i - 1].first, vals[i].first) << fmt::format("Doesn't increase starting with {} index", i);
-    }
-}
-
-TEST_F(MapTest, EraseNotExistingValue) {
-    EXPECT_THROW({ mp.Erase(-100); }, std::runtime_error);
-}
-
-TEST_F(MapTest, CustomComparator) {
-    struct Point {
-        int x;
-        int y;
-        bool operator==(const Point& b) {
-            return (this->x == b.x) && (this->y == b.y);
-        }
-    };
-
-    struct PointComparator {
-        constexpr bool operator()(const Point& a, const Point& b) const {
-            auto dist1 = sqrt(pow(a.x, 2) + pow(a.y, 2));
-            auto dist2 = sqrt(pow(b.x, 2) + pow(b.y, 2));
-            return dist1 < dist2;
-        }
-    };
-
-    Map<Point, int, PointComparator> points;
-    points.Insert({
-        {{0, 0}, 21},
-        {{4, 5}, 22},
-        {{0, 10}, 24},
-    });
-
-    std::map<Point, int, PointComparator> std_points{
-        {{0, 0}, 21},
-        {{4, 5}, 22},
-        {{0, 10}, 24},
-    };
-
-    auto values = points.Values(true);
-    auto it = values.begin();
-    for (const auto& val : std_points) {
-        ASSERT_EQ(it->second, val.second)
-            << fmt::format("Values isn't equal on {} index", std::distance(values.begin(), it));
-        ++it;
-    }
+TEST(EmptyVectorTest, MoveOperator) {
+    Vector<MemoryUseObject> vec1;
+    vec1.PushBack(MemoryUseObject());
+    Vector<MemoryUseObject> vec;
+    vec1 = std::move(vec);
+    ASSERT_EQ(vec1.Size(), 1);
+    ASSERT_EQ(vec.Size(), 0);
 }
 
 int main(int argc, char** argv) {
