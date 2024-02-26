@@ -8,4 +8,5 @@ add_subdirectory(lists)
 add_subdirectory(hashtable)
 add_subdirectory(tutorial)
 add_subdirectory(sort)
+add_subdirectory(bash)
 
