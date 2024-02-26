@@ -1,3 +1,6 @@
 {
-  "submit_files": ["solution.sh", "solution.py"]
+  "tests": [],
+  "lint_files": [],
+  "submit_files": ["solution.sh", "solution.py"],
+  "forbidden": []
 }
