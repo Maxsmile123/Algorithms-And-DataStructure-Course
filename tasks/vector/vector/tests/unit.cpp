@@ -11,12 +11,12 @@
 #include "../vector.hpp"
 
 class Singleton {
+private:
+    Singleton() {}
+
 public:
-    Singleton() = delete;
     Singleton(const Singleton&) = delete;
-    Singleton(Singleton&&) = delete;
     Singleton& operator=(const Singleton&) = delete;
-    Singleton&& operator=(Singleton&&) = delete;
 
     static Singleton* getInstance() {
         if (instance == nullptr) {
@@ -45,7 +45,6 @@ public:
 
 private:
     void* a;
-
 }
 
 
@@ -133,6 +132,188 @@ TEST(EmptyVectorTest, MoveOperator) {
     vec1 = std::move(vec);
     ASSERT_EQ(vec1.Size(), 1);
     ASSERT_EQ(vec.Size(), 0);
+}
+
+TEST(EmptyVectorTest, Init_list) {
+    Vector<int> vec({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST(EmptyVectorTest, OperatorSqueareBrackets) {
+    Vector<std::mutex> vec;
+    std::mutex mutex;
+    vec.PushBack(mutex);
+
+    std::thread t1([&](){
+        vec[0].lock();
+    });
+
+    std::thread t2([&](){
+        vec.Front().unlock();
+    });
+
+    std::thread t3([&](){
+        vec.Back().lock();
+    });
+
+    t1.join();
+    t2.join();
+
+    auto future = std::async(std::launch::async, &std::thread::join, &t3);
+    ASSERT_EQ(
+        future.wait_for(std::chrono::seconds(1)),
+        std::future_status::timeout
+    ) << "There is deadlock!\n"; 
+}
+
+TEST_F(VectorTest, RawData) {
+    auto data = vec.Data();
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(*(data + i), i + 1);
+    }
+}
+
+TEST(EmptyVectorTest, JustReserve) {
+    Vector<int> vec;
+    vec.Reserve(100);
+    ASSERT_EQ(vec.Capacity(), 100);
+    ASSERT_EQ(vec.Size(), 0);
+    for (size_t i = 0; i < 99; ++i) {
+        vec.PushBack(1);
+    }
+    ASSERT_EQ(vec.Capacity(), 100);
+    ASSERT_EQ(vec.Size(), 99);
+}
+
+TEST(EmptyVectorTest, ReserveWithRealloc) {
+    Vector<int> vec({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    vec.Reserve(100);
+    ASSERT_EQ(vec.Capacity(), 100);
+    ASSERT_EQ(vec.Size(), 9);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST(EmptyVectorTest, ReserveWithNoEffect) {
+    Vector<int> vec({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    vec.Reserve(1);
+    ASSERT_EQ(vec.Capacity(), 10);
+    ASSERT_EQ(vec.Size(), 9);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST_F(VectorTest, VectorClear) {
+    size_t old_cap = vec.Capacity();
+    vec.Clear();
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), 0);
+}
+
+TEST_F(VectorTest, InsertFront) {
+    vec.Insert(0, 0);
+    ASSERT_EQ(vec.Size(), sz + 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i);
+    }
+}
+
+TEST_F(VectorTest, InsertBack) {
+    vec.Insert(sz, sz + 1);
+    ASSERT_EQ(vec.Size(), sz + 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST_F(VectorTest, InsertMid) {
+    vec.Insert(sz / 2, 0);
+    ASSERT_EQ(vec.Size(), sz + 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        if (i == sz / 2) {
+            ASSERT_EQ(vec[i], 0);
+        } else {
+            ASSERT_EQ(vec[i], i + 1);
+        }
+    }
+}
+
+TEST_F(VectorTest, InsertWithResize) {
+    size_t cur_cap = vec.Capacity();
+    for (size_t i = sz; i < cur_cap; ++i) {
+        vec.PushBack(i + 1);
+    }
+
+    size_t pos = vec.Size() / 2;
+    vec.Insert(pos, 0);
+    ASSERT_NE(cur_cap, vec.Capacity());
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        if (i == pos) {
+            ASSERT_EQ(vec[i], 0);
+        } else {
+            ASSERT_EQ(vec[i], i + 1);
+        }
+    }
+}
+
+TEST_F(VectorTest, VectorPopBack) {
+    vec.PopBack();
+    ASSERT_EQ(vec.Size(), sz - 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST_F(VectorTest, VectorEraseAll) {
+    size_t old_cap = vec.Capacity();
+    vec.Erase(0, sz);
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), 0);
+}
+
+TEST_F(VectorTest, VectorEraseFront) {
+    size_t old_cap = vec.Capacity();
+    vec.Erase(0, 1);
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), sz - 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 2);
+    }
+}
+
+TEST_F(VectorTest, VectorEraseBack) {
+    size_t old_cap = vec.Capacity();
+    vec.Erase(sz - 1, sz);
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), sz - 1);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST_F(VectorTest, VectorEraseMid) {
+    size_t old_cap = vec.Capacity();
+    std::vector<int> a = {1, 2, 5, 6, 7};
+    vec.Erase(sz / 2 - 1, sz / 2 + 1); // 2 - 4
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), sz - 2);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], a[i]);
+    }
+}
+
+TEST_F(VectorTest, VectorEraseNoneExistingPositions) {
+    size_t old_cap = vec.Capacity();
+    vec.Erase(sz + 1, sz + 3); // no effect
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), sz);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
 }
 
 int main(int argc, char** argv) {
