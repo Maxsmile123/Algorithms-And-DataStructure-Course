@@ -7,6 +7,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <memory>
 
 #include "../vector.hpp"
 
@@ -315,6 +316,92 @@ TEST_F(VectorTest, VectorEraseNoneExistingPositions) {
         ASSERT_EQ(vec[i], i + 1);
     }
 }
+
+TEST(EmptyVectorTest, MoveToPushBack) {
+    Vector<std::unique_ptr> vec;
+    std::unique_ptr<MemoryUseObject> ptr = std::make_unique<MemoryUseObject>();
+    vec.PushBack(std::move(ptr));
+    vec.PopBack(); // if work not correct will error with ASAN
+}
+
+TEST(EmptyVectorTest, VectorEmplaceBack) {
+
+    struct President {
+        std::string name;
+        std::string country;
+        int year;
+    
+        President(std::string p_name, std::string p_country, int p_year)
+            : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
+        {}
+    
+        President(President&& other)
+            : name(std::move(other.name)), country(std::move(other.country)), year(other.year)
+        {}
+    
+        President& operator=(const President& other) = default;
+    };
+
+    Vector<President> vec;
+    std::string name = "Nelson Mandela";
+    vec.EmplaceBack(name, "South Africa", 1994);
+    ASSERT_FALSE(name.empty());
+
+
+    vec.EmplaceBack("Franklin Delano Roosevelt", "USA", 1936);
+
+    ASSERT_EQ(vec.Size(), 2);
+    ASSERT_EQ(vec[0].year, 1994);
+    ASSERT_EQ(vec[1].year, 1936);
+}
+
+TEST_F(VectorTest, VectorResizeGreaterThenCurrent) {
+    size_t old_cap = vec.Capacity();
+    size_t old_size = vec.Size();
+    vec.Resize(old_size + old_cap, 0);
+    ASSERT_NE(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), old_size + old_cap);
+    for (size_t i = 0; i < old_size; ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+    for (size_t i = old_size; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec[i], 0);
+    }
+}
+
+TEST_F(VectorTest, VectorResizeEqualCurrent) {
+    size_t old_cap = vec.Capacity();
+    size_t old_size = vec.Size();
+    vec.Resize(old_size, 0); // no effect
+    ASSERT_NE(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), old_size);
+    for (size_t i = 0; i < old_size; ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST_F(VectorTest, VectorResizeLessThenCurrent) {
+    size_t old_cap = vec.Capacity();
+    size_t old_size = vec.Size();
+    vec.Resize(old_size - 4, 0); // reducing
+    ASSERT_EQ(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Size(), old_size - 4);
+    for (size_t i = 0; i < old_size - 4; ++i) {
+        ASSERT_EQ(vec[i], i + 1);
+    }
+}
+
+TEST(EmptyVectorTest, VoidAsTemplate) {
+    Vector<void*> vec;
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    void* ptr = vec.Front();
+    ptr = vec.Back();
+}
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
