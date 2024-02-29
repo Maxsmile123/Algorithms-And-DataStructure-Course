@@ -5,7 +5,6 @@
 #include <initializer_list>
 #include <utility>
 
-class Vector<President>;
 
 template <typename T>
 class Vector {
@@ -60,3 +59,7 @@ public:
 private:
     /*???*/
 };
+
+class President;
+
+class Vector<President>;
