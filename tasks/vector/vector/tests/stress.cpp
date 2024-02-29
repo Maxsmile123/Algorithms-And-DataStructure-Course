@@ -1,11 +1,11 @@
+#include "../vector.hpp"
+
 #include <random>
 #include <vector>
 #include <string>
 
 #include <benchmark/benchmark.h>
 #include <fmt/core.h>
-
-#include "../vector.hpp"
 
 void ConstructRandomVector(Vector<int>& vec, int sz) {
   std::random_device rd;

@@ -5,7 +5,6 @@
 #include <initializer_list>
 #include <utility>
 
-
 template <typename T>
 class Vector {
 public:

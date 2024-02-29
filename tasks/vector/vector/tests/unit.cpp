@@ -1,3 +1,5 @@
+#include "../vector.hpp"
+
 #include <fmt/core.h>
 #include <gtest/gtest.h>
 
@@ -8,8 +10,6 @@
 #include <thread>
 #include <vector>
 #include <memory>
-
-#include "../vector.hpp"
 
 class Singleton {
 private:
