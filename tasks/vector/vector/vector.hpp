@@ -5,6 +5,8 @@
 #include <initializer_list>
 #include <utility>
 
+class Vector<President>;
+
 template <typename T>
 class Vector {
 public:
