@@ -56,5 +56,3 @@ public:
 private:
     /*???*/
 };
-
-#include "vector.cpp"

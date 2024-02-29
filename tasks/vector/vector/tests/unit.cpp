@@ -1,4 +1,5 @@
 #include "../vector.hpp"
+#include "../vector.cpp"
 
 #include <fmt/core.h>
 #include <gtest/gtest.h>
