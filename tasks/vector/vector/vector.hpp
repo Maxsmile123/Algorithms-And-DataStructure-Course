@@ -1,7 +1,5 @@
 #pragma once
 
-#include <fmt/core.h>
-
 #include <initializer_list>
 #include <utility>
 

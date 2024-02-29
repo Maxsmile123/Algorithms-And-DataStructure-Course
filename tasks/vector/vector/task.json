@@ -14,8 +14,14 @@
       ]
     }
   ],
-  "lint_files": ["vector.hpp"],
-  "submit_files": ["vector.hpp"],
+  "lint_files": [
+    "vector.hpp",
+    "vector.cpp"
+  ],
+  "submit_files": [
+    "vector.hpp",
+    "vector.cpp"
+  ],
   "forbidden": [
     {
       "patterns": [
