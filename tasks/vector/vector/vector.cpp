@@ -1,90 +1,112 @@
 #include "vector.hpp"
 
-Vector::Vector() {
+
+template <typename T>
+Vector<T>::Vector() {
     // Not Implemented
 }
 
-Vector::Vector(size_t /*count*/, const T& /*value*/) {
+template <typename T>
+Vector<T>::Vector(size_t /*count*/, const T& /*value*/) {
     // Not Implemented
 }
 
-Vector::Vector(const Vector& /*other*/) {
+template <typename T>
+Vector<T>::Vector(const Vector& /*other*/) {
     // Not Implemented
 }
 
-Vector& Vector::operator=(const Vector& /*other*/) {
+template <typename T>
+Vector& Vector<T>::operator=(const Vector& /*other*/) {
     std::abort(); // Not Implemented
 }
 
-Vector::Vector(Vector&& /*other*/) noexcept {
+template <typename T>
+Vector<T>::Vector(Vector&& /*other*/) noexcept {
     // Not Implemented
 }
 
-Vector::Vector(std::initializer_list<T> /*init*/) {
+template <typename T>
+Vector<T>::Vector(std::initializer_list<T> /*init*/) {
     // Not Implemented
 }
 
-T& Vector::operator[](size_t /*pos*/) {
+template <typename T>
+T& Vector<T>::operator[](size_t /*pos*/) {
     std::abort();  // Not Implemented
 }
 
-T& Vector::Front() const noexcept {
+template <typename T>
+T& Vector<T>::Front() const noexcept {
     std::abort();  // Not Implemented
 }
 
-bool Vector::IsEmpty() const noexcept {
+template <typename T>
+bool Vector<T>::IsEmpty() const noexcept {
     std::abort();  // Not Implemented
 }
 
-T& Vector::Back() const noexcept {
+template <typename T>
+T& Vector<T>::Back() const noexcept {
     std::abort();  // Not Implemented
 }
 
-T* Vector::Data() const noexcept {
+template <typename T>
+T* Vector<T>::Data() const noexcept {
     std::abort();  // Not Implemented
 }
 
-size_t Vector::Size() const noexcept {
+template <typename T>
+size_t Vector<T>::Size() const noexcept {
     std::abort();  // Not Implemented
 }
 
-size_t Vector::Capacity() const noexcept {
+template <typename T>
+size_t Vector<T>::Capacity() const noexcept {
     std::abort();  // Not Implemented
 }
 
-void Vector::Reserve(size_t /*new_cap*/) {
+template <typename T>
+void Vector<T>::Reserve(size_t /*new_cap*/) {
     // Not Implemented
 }
 
-void Vector::Clear() noexcept {
+template <typename T>
+void Vector<T>::Clear() noexcept {
     // Not Implemented
 }
 
-void Vector::Insert(size_t /*pos*/, T /*value*/) {
+template <typename T>
+void Vector<T>::Insert(size_t /*pos*/, T /*value*/) {
     // Not Implemented
 }
 
-void Vector::Erase(size_t /*begin_pos*/, size_t /*end_pos*/) {
+template <typename T>
+void Vector<T>::Erase(size_t /*begin_pos*/, size_t /*end_pos*/) {
     // Not Implemented
 }
 
-void Vector::PushBack(T /*value*/) {
+template <typename T>
+void Vector<T>::PushBack(T /*value*/) {
     // Not Implemented
 }
 
-template <class... Args>
-void Vector::EmplaceBack(Args&&... /*args*/) {
+template <typename T, class... Args>
+void Vector<T>::EmplaceBack(Args&&... /*args*/) {
     // Not Implemented
 }
 
-void Vector::PopBack() {
+template <typename T>
+void Vector<T>::PopBack() {
     // Not Implemented
 }
 
-void Vector::Resize(size_t /*count*/, const T& /*value*/) {
+template <typename T>
+void Vector<T>::Resize(size_t /*count*/, const T& /*value*/) {
     // Not Implemented
 }
 
-Vector::~Vector() {
+template <typename T>
+Vector<T>::~Vector() {
     // Not Implemented
 }
