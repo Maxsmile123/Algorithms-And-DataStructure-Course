@@ -1,4 +1,4 @@
-
+#include "vector.hpp"
 
 template <typename T>
 Vector<T>::Vector() {
