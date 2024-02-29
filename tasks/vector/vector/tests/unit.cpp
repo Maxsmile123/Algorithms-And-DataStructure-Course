@@ -82,15 +82,6 @@ TEST(EmptyVectorTest, AssignIntConstructor) {
     }
 }
 
-TEST_F(VectorTest, CopyConstructor) {
-    Vector<int> vec1 = vec;
-    ASSERT_NE(&vec1, &vec) << "Copy constructor must do copy!\n";
-    ASSERT_EQ(vec1.Size(), vec.Size());
-    for (size_t i = 0; i < vec.Size(); ++i) {
-        ASSERT_EQ(vec1[i], vec[i]) << "Values must be equal!";
-    }
-}
-
 TEST(EmptyVectorTest, CopyConstructorWithPointers) {
     int a = 1;
     int b = 2;
@@ -108,14 +99,6 @@ TEST(EmptyVectorTest, CopyConstructorWithPointers) {
     }
 }
 
-TEST_F(VectorTest, MoveConstructor) {
-    Vector<int> vec1 = std::move(vec);
-    ASSERT_EQ(vec1.Size(), sz);
-    for (size_t i = 0; i < vec.Size(); ++i) {
-        ASSERT_EQ(vec1[i], i + 1);
-        ASSERT_EQ(vec[i], 0);
-    }
-}
 
 TEST(EmptyVectorTest, CopyOperator) {
     Vector<MemoryUseObject> vec1;
@@ -142,38 +125,11 @@ TEST(EmptyVectorTest, Init_list) {
     }
 }
 
-TEST(EmptyVectorTest, OperatorSqueareBrackets) {
-    Vector<std::unique_ptr<std::mutex>> vec;
-    auto ptr = std::make_unique<std::mutex>();
-    vec.PushBack(ptr);
-
-    std::thread t1([&](){
-        vec[0]->lock();
-    });
-
-    std::thread t2([&](){
-        vec.Front()->unlock();
-    });
-
-    std::thread t3([&](){
-        vec.Back()->lock();
-    });
-
-    t1.join();
-    t2.join();
-
-    auto future = std::async(std::launch::async, &std::thread::join, &t3);
-    ASSERT_EQ(
-        future.wait_for(std::chrono::seconds(1)),
-        std::future_status::timeout
-    ) << "There is deadlock!\n"; 
-}
-
-TEST_F(VectorTest, RawData) {
-    auto data = vec.Data();
-    for (size_t i = 0; i < vec.Size(); ++i) {
-        ASSERT_EQ(*(data + i), i + 1);
-    }
+TEST(EmptyVectorTest, MoveToPushBack) {
+    Vector<std::unique_ptr<MemoryUseObject>> vec;
+    std::unique_ptr<MemoryUseObject> ptr = std::make_unique<MemoryUseObject>();
+    vec.PushBack(std::move(ptr));
+    vec.PopBack(); // if work not correct will error with ASAN
 }
 
 TEST(EmptyVectorTest, JustReserve) {
@@ -207,6 +163,103 @@ TEST(EmptyVectorTest, ReserveWithNoEffect) {
         ASSERT_EQ(vec[i], i + 1);
     }
 }
+
+TEST(EmptyVectorTest, OperatorSqueareBrackets) {
+    Vector<std::unique_ptr<std::mutex>> vec;
+    auto ptr = std::make_unique<std::mutex>();
+    vec.PushBack(std::move(ptr));
+
+    std::thread t1([&](){
+        vec[0]->lock();
+    });
+
+    std::thread t2([&](){
+        vec.Front()->unlock();
+    });
+
+    std::thread t3([&](){
+        vec.Back()->lock();
+    });
+
+    t1.join();
+    t2.join();
+
+    auto future = std::async(std::launch::async, &std::thread::join, &t3);
+    ASSERT_EQ(
+        future.wait_for(std::chrono::seconds(1)),
+        std::future_status::timeout
+    ) << "There is deadlock!\n"; 
+}
+
+TEST(EmptyVectorTest, VectorEmplaceBack) {
+
+    struct President {
+        std::string name;
+        std::string country;
+        int year;
+    
+        President(std::string p_name, std::string p_country, int p_year)
+            : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
+        {}
+    
+        President(President&& other)
+            : name(std::move(other.name)), country(std::move(other.country)), year(other.year)
+        {}
+    
+        President& operator=(const President& other) = default;
+    };
+
+    Vector<President> vec;
+    std::string name = "Nelson Mandela";
+    vec.EmplaceBack(name, "South Africa", 1994);
+    ASSERT_FALSE(name.empty());
+
+
+    vec.EmplaceBack("Franklin Delano Roosevelt", "USA", 1936);
+
+    ASSERT_EQ(vec.Size(), 2);
+    ASSERT_EQ(vec[0].year, 1994);
+    ASSERT_EQ(vec[1].year, 1936);
+}
+
+TEST(EmptyVectorTest, VoidAsTemplate) {
+    Vector<void*> vec;
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    vec.PushBack(malloc(1));
+    void* ptr = vec.Front();
+    ptr = vec.Back();
+    free(ptr);
+}
+
+
+TEST_F(VectorTest, CopyConstructor) {
+    Vector<int> vec1 = vec;
+    ASSERT_NE(&vec1, &vec) << "Copy constructor must do copy!\n";
+    ASSERT_EQ(vec1.Size(), vec.Size());
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec1[i], vec[i]) << "Values must be equal!";
+    }
+}
+
+TEST_F(VectorTest, MoveConstructor) {
+    Vector<int> vec1 = std::move(vec);
+    ASSERT_EQ(vec1.Size(), sz);
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(vec1[i], i + 1);
+        ASSERT_EQ(vec[i], 0);
+    }
+}
+
+TEST_F(VectorTest, RawData) {
+    auto data = vec.Data();
+    for (size_t i = 0; i < vec.Size(); ++i) {
+        ASSERT_EQ(*(data + i), i + 1);
+    }
+}
+
 
 TEST_F(VectorTest, VectorClear) {
     size_t old_cap = vec.Capacity();
@@ -317,44 +370,6 @@ TEST_F(VectorTest, VectorEraseNoneExistingPositions) {
     }
 }
 
-TEST(EmptyVectorTest, MoveToPushBack) {
-    Vector<std::unique_ptr<MemoryUseObject>> vec;
-    std::unique_ptr<MemoryUseObject> ptr = std::make_unique<MemoryUseObject>();
-    vec.PushBack(std::move(ptr));
-    vec.PopBack(); // if work not correct will error with ASAN
-}
-
-TEST(EmptyVectorTest, VectorEmplaceBack) {
-
-    struct President {
-        std::string name;
-        std::string country;
-        int year;
-    
-        President(std::string p_name, std::string p_country, int p_year)
-            : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
-        {}
-    
-        President(President&& other)
-            : name(std::move(other.name)), country(std::move(other.country)), year(other.year)
-        {}
-    
-        President& operator=(const President& other) = default;
-    };
-
-    Vector<President> vec;
-    std::string name = "Nelson Mandela";
-    vec.EmplaceBack(name, "South Africa", 1994);
-    ASSERT_FALSE(name.empty());
-
-
-    vec.EmplaceBack("Franklin Delano Roosevelt", "USA", 1936);
-
-    ASSERT_EQ(vec.Size(), 2);
-    ASSERT_EQ(vec[0].year, 1994);
-    ASSERT_EQ(vec[1].year, 1936);
-}
-
 TEST_F(VectorTest, VectorResizeGreaterThenCurrent) {
     size_t old_cap = vec.Capacity();
     size_t old_size = vec.Size();
@@ -389,18 +404,6 @@ TEST_F(VectorTest, VectorResizeLessThenCurrent) {
     for (size_t i = 0; i < old_size - 4; ++i) {
         ASSERT_EQ(vec[i], i + 1);
     }
-}
-
-TEST(EmptyVectorTest, VoidAsTemplate) {
-    Vector<void*> vec;
-    vec.PushBack(malloc(1));
-    vec.PushBack(malloc(1));
-    vec.PushBack(malloc(1));
-    vec.PushBack(malloc(1));
-    vec.PushBack(malloc(1));
-    void* ptr = vec.Front();
-    ptr = vec.Back();
-    free(ptr);
 }
 
 
