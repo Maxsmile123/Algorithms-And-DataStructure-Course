@@ -17,7 +17,7 @@ Vector<T>::Vector(const Vector& /*other*/) {
 }
 
 template <typename T>
-Vector& Vector<T>::operator=(const Vector& /*other*/) {
+Vector<T>& Vector<T>::operator=(const Vector& /*other*/) {
     std::abort(); // Not Implemented
 }
 
@@ -91,7 +91,8 @@ void Vector<T>::PushBack(T /*value*/) {
     // Not Implemented
 }
 
-template <typename T, class... Args>
+template <typename T>
+template <class... Args>
 void Vector<T>::EmplaceBack(Args&&... /*args*/) {
     // Not Implemented
 }
