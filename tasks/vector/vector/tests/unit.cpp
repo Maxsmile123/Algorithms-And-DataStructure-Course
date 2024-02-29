@@ -46,7 +46,7 @@ public:
 
 private:
     void* a;
-}
+};
 
 
 
@@ -143,20 +143,20 @@ TEST(EmptyVectorTest, Init_list) {
 }
 
 TEST(EmptyVectorTest, OperatorSqueareBrackets) {
-    Vector<std::mutex> vec;
-    std::mutex mutex;
-    vec.PushBack(mutex);
+    Vector<std::unique_ptr<std::mutex>> vec;
+    auto ptr = std::make_unique<std::mutex>();
+    vec.PushBack(ptr);
 
     std::thread t1([&](){
-        vec[0].lock();
+        vec[0]->lock();
     });
 
     std::thread t2([&](){
-        vec.Front().unlock();
+        vec.Front()->unlock();
     });
 
     std::thread t3([&](){
-        vec.Back().lock();
+        vec.Back()->lock();
     });
 
     t1.join();
@@ -318,7 +318,7 @@ TEST_F(VectorTest, VectorEraseNoneExistingPositions) {
 }
 
 TEST(EmptyVectorTest, MoveToPushBack) {
-    Vector<std::unique_ptr> vec;
+    Vector<std::unique_ptr<MemoryUseObject>> vec;
     std::unique_ptr<MemoryUseObject> ptr = std::make_unique<MemoryUseObject>();
     vec.PushBack(std::move(ptr));
     vec.PopBack(); // if work not correct will error with ASAN
@@ -400,6 +400,7 @@ TEST(EmptyVectorTest, VoidAsTemplate) {
     vec.PushBack(malloc(1));
     void* ptr = vec.Front();
     ptr = vec.Back();
+    free(ptr);
 }
 
 
