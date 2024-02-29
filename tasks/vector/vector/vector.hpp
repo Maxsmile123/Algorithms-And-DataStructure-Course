@@ -1,5 +1,4 @@
 #pragma once
-#pragma disable(5046:warning)
 
 #include <fmt/core.h>
 

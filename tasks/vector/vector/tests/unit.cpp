@@ -48,7 +48,21 @@ private:
     void* a;
 };
 
-
+struct President {
+    std::string name;
+    std::string country;
+    int year;
+    
+    President(std::string p_name, std::string p_country, int p_year)
+        : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
+    {}
+    
+    President(President&& other)
+        : name(std::move(other.name)), country(std::move(other.country)), year(other.year)
+    {}
+    
+    President& operator=(const President& other) = default;
+};
 
 class VectorTest : public testing::Test {
 protected:
@@ -192,23 +206,6 @@ TEST(EmptyVectorTest, OperatorSqueareBrackets) {
 }
 
 TEST(EmptyVectorTest, VectorEmplaceBack) {
-
-    struct President {
-        std::string name;
-        std::string country;
-        int year;
-    
-        President(std::string p_name, std::string p_country, int p_year)
-            : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
-        {}
-    
-        President(President&& other)
-            : name(std::move(other.name)), country(std::move(other.country)), year(other.year)
-        {}
-    
-        President& operator=(const President& other) = default;
-    };
-
     Vector<President> vec;
     std::string name = "Nelson Mandela";
     vec.EmplaceBack(name, "South Africa", 1994);
