@@ -16,7 +16,7 @@ public:
 
     Vector(Vector&& other) noexcept;
 
-    Vector&& operator=(Vector&& other);
+    Vector& operator=(Vector&& other);
 
     Vector(std::initializer_list<T> init);
 

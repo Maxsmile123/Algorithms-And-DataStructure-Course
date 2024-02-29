@@ -21,6 +21,11 @@ Vector<T>& Vector<T>::operator=(const Vector& /*other*/) {
 }
 
 template <typename T>
+Vector<T>& Vector<T>::operator=(Vector&& /*other*/) {
+    std::abort(); // Not Implemented
+}
+
+template <typename T>
 Vector<T>::Vector(Vector&& /*other*/) noexcept {
     // Not Implemented
 }
