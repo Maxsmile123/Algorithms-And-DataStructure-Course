@@ -44,6 +44,12 @@
         "using namespace std"
       ],
       "hint": "Do not use this line! Never again!"
+    },
+    {
+      "patterns": [
+        "std::abort"
+      ],
+      "hint": "Write code and remove this stub"
     }
   ]
 }
