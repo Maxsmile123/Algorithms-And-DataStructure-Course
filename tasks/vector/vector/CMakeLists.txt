@@ -1,6 +1,6 @@
 begin_task()
 
-set_task_sources(vector.hpp vector.cpp)
+set_task_sources(vector.cpp)
 
 add_task_test(unit_tests tests/unit.cpp)
 
