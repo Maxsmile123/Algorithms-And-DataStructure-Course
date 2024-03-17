@@ -152,7 +152,7 @@ TEST_F(ListTest, SelfAssignment) {
     list = list;
   });
   auto future = std::async(std::launch::async, &std::thread::join, &thread);
-  ASSERT_EQ(
+  ASSERT_LT(
     future.wait_for(std::chrono::seconds(1)),
     std::future_status::timeout
   ) << "There is infinity loop!\n";
@@ -180,7 +180,9 @@ TEST_F(ListTest, ReverseRangeWithIteratorPreFix) {
   ASSERT_EQ(std::distance(list.Begin(), list.End()), sz) << 
                 "Distanse between begin and end iterators ins't equal size";
   int iter = sz;
-  for (auto it = list.End(); it != list.Begin(); --it) {
+  auto it = list.End();
+  for (size_t i = sz; i > 0; --i) {
+    --it;
     ASSERT_EQ(*it, iter--);
   }
 }
@@ -188,8 +190,10 @@ TEST_F(ListTest, ReverseRangeWithIteratorPreFix) {
 TEST_F(ListTest, ReverseRangeWithIteratorPostFix) {
   ASSERT_EQ(std::distance(list.Begin(), list.End()), sz) << 
                 "Distanse between begin and end iterators ins't equal size";
+  auto it = list.End();
   int iter = sz;
-  for (auto it = list.End(); it != list.Begin(); it--) {
+  for (size_t i = sz; i > 0; --i) {
+    it--;
     ASSERT_EQ(*it, iter--);
   }
 }
