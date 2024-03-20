@@ -72,11 +72,11 @@ public:
       };
 
   private:
-      ListIterator(const Node*) {
+      explicit ListIterator(const Node*) {
           // Not implemented
       }
   private:
-      Node* current;
+      Node* current_;
   };
 
 public:
