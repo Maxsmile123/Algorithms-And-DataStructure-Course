@@ -105,6 +105,8 @@ private:
 
 [Writing a custom iterator in modern C++](https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp)
 
+Если список пустой, а из него что-то пытаются удалить - бросьте исключение [ListIsEmptyException](exceptions.hpp)
+
 ## Операции с итераторами в списке
 
 ![Alt text](./images/image.png)
@@ -140,4 +142,4 @@ private:
 
 ## Примечание
 
-В Стресс-тесте сравнится по скорости ваша реализация с `std::list`.
+В Стресс-тесте сравнится по скорости ваша реализация с `std::list`
