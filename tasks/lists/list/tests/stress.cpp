@@ -132,9 +132,7 @@ void BM_CustomListFind(benchmark::State& state) {
     state.PauseTiming();
     ConstructRandomList(list, state.range(0));
     state.ResumeTiming();
-    state.PauseTiming();
     random_key = dist(mt);
-    state.ResumeTiming();
     list.Find(random_key);
   }
   state.SetComplexityN(state.range(0));
@@ -150,9 +148,7 @@ void BM_StdListFind(benchmark::State& state) {
     state.PauseTiming();
     ConstructRandomList(list, state.range(0));
     state.ResumeTiming();
-    state.PauseTiming();
     random_key = dist(mt);
-    state.ResumeTiming();
     auto it = std::find(list.begin(), list.end(), random_key);
   }
   state.SetComplexityN(state.range(0));
