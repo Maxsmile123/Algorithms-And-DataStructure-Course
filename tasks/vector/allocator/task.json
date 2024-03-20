@@ -9,7 +9,7 @@
     }
   ],
   "lint_files": ["filesystem"],
-  "submit_files": ["filesystem"],
+  "submit_files": ["."],
   "forbidden": [
     {
       "patterns": [

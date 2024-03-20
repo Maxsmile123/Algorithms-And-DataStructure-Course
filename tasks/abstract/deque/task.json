@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["deque.hpp"],
-  "submit_files": ["deque.hpp"],
+  "submit_files": ["."],
   "forbidden": [
     {
       "patterns": [
