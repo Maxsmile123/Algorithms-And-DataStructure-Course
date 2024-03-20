@@ -72,14 +72,14 @@ TEST(EmptyListTest, PopBackEmptyList) {
   List<int> list;
   EXPECT_THROW({
     list.PopBack();
-  }, std::runtime_error);
+  }, ListIsEmptyException);
 }
 
 TEST(EmptyListTest, PopFrontEmptyList) {
   List<int> list;
   EXPECT_THROW({
     list.PopFront();
-  }, std::runtime_error);
+  }, ListIsEmptyException);
 }
 
 TEST(EmptyListTest, ConstructorSizeDefaultValues) {
