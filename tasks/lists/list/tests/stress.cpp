@@ -129,12 +129,8 @@ void BM_CustomListFind(benchmark::State& state) {
   std::uniform_int_distribution<int> dist(INT_MIN, INT_MAX);
   int random_key;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
-    state.PauseTiming();
     random_key = dist(mt);
-    state.ResumeTiming();
     list.Find(random_key);
   }
   state.SetComplexityN(state.range(0));
@@ -147,13 +143,9 @@ void BM_StdListFind(benchmark::State& state) {
   std::uniform_int_distribution<int> dist(INT_MIN, INT_MAX);
   int random_key;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
-    state.PauseTiming();
     random_key = dist(mt);
-    state.ResumeTiming();
-    auto it = std::find(list.begin(), list.end(), random_key);
+    std::ignore = std::find(list.begin(), list.end(), random_key);
   }
   state.SetComplexityN(state.range(0));
 }
