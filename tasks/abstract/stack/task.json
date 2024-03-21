@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["stack.hpp"],
-  "submit_files": ["."],
+  "submit_files": ["stack.hpp"],
   "forbidden": [
     {
       "patterns": [

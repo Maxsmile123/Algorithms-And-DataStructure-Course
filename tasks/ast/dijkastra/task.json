@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["algo.hpp"],
-  "submit_files": ["."],
+  "submit_files": ["algo.hpp"],
   "forbidden": [
     {
       "patterns": [

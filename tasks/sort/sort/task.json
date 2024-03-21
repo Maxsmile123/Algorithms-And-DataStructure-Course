@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["forward_list.hpp"],
-  "submit_files": ["."],
+  "submit_files": ["forward_list.hpp"],
   "forbidden": [
     {
       "patterns": [

@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["map.hpp"],
-  "submit_files": ["."],
+  "submit_files": ["map.hpp"],
   "forbidden": [
     {
       "patterns": [
