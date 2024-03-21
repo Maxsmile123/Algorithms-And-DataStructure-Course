@@ -18,10 +18,7 @@
     "vector.hpp",
     "vector.cpp"
   ],
-  "submit_files": [
-    "vector.hpp",
-    "vector.cpp"
-  ],
+  "submit_files": ["."],
   "forbidden": [
     {
       "patterns": [
