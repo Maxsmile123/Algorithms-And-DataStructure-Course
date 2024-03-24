@@ -30,7 +30,7 @@
 
 ## Наследование
 
-Можно избежать тупого Ctrl+C и Ctrl+V из двусвязного списка. Наследуйте ForwardListIterator от ListIterator из [list/iterator.hpp](../list/iterator.hpp) и запретите(`=delete`) операции, которые вам не нужны.
+Хорошее решение подразумевает отсутствие тупого Ctrl+C и Ctrl+V из двусвязного списка. Наследуйте ForwardListIterator от ListIterator из [list/iterator.hpp](../list/iterator.hpp) и запретите(`=delete`) операции, которые вам не нужны. Данный пункт является опциональным, однако рекомендуемый.
 
 
 ## Задание
