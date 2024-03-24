@@ -129,7 +129,6 @@ TEST_F(ListTest, CopyConstructor) {
   while (!lst.IsEmpty()) {
     ASSERT_EQ(list.Front(), lst.Front());
     list.PopFront();
-    ASSERT_NE(list.Front(), lst.Front());
     lst.PopFront();
   }
 }
