@@ -49,7 +49,7 @@ TEST(EmptyListTest, PopFrontEmptyList) {
   ForwardList<int> list;
   EXPECT_THROW({
     list.PopFront();
-  }, std::runtime_error);
+  }, ListIsEmptyException);
 }
 
 TEST(EmptyListTest, ConstructorSizeDefaultValues) {
