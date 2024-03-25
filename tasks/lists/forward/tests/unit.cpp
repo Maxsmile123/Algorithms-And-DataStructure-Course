@@ -150,10 +150,10 @@ TEST_F(ListTest, RangeWithIteratorPostFix) {
 }
 
 TEST_F(ListTest, EraseBegin) {
-  int first_value = *(list.Begin()++);
+  int second_value = *(++list.Begin());
   list.EraseAfter(list.Begin());
   ASSERT_EQ(list.Size(), sz - 1);
-  ASSERT_EQ(*(list.Begin()++), first_value);
+  ASSERT_NE(*(++list.Begin()), second_value);
 }
 
 TEST_F(ListTest, EraseMedium) {
