@@ -1,7 +1,6 @@
 #include <forward_list>
 #include <thread>
 #include <future>
-
 #include <fmt/core.h>
 #include <gtest/gtest.h>
 
@@ -50,7 +49,7 @@ TEST(EmptyListTest, PopFrontEmptyList) {
   ForwardList<int> list;
   EXPECT_THROW({
     list.PopFront();
-  }, std::runtime_error);
+  }, ListIsEmptyException);
 }
 
 TEST(EmptyListTest, ConstructorSizeDefaultValues) {
@@ -89,9 +88,9 @@ TEST(EmptyListTest, Swap) {
   ASSERT_EQ(list.Size(), old_dict_size);
 
   ASSERT_EQ(lst.Front(), 5);
-  ASSERT_EQ(list.Front(), 15);
-  list.PopFront();
   ASSERT_EQ(list.Front(), 14);
+  list.PopFront();
+  ASSERT_EQ(list.Front(), 15);
 }
 
 TEST_F(ListTest, CopyConstructor) {
@@ -101,7 +100,9 @@ TEST_F(ListTest, CopyConstructor) {
   while (!lst.IsEmpty()) {
     ASSERT_EQ(list.Front(), lst.Front());
     list.PopFront();
-    ASSERT_NE(list.Front(), lst.Front());
+    if (!list.IsEmpty()) {
+      ASSERT_NE(list.Front(), lst.Front());
+    }
     lst.PopFront();
   }
 }
@@ -124,7 +125,7 @@ TEST_F(ListTest, SelfAssignment) {
     list = list;
   });
   auto future = std::async(std::launch::async, &std::thread::join, &thread);
-  ASSERT_EQ(
+  ASSERT_LT(
     future.wait_for(std::chrono::seconds(1)),
     std::future_status::timeout
   ) << "There is infinity loop!\n";
@@ -133,26 +134,26 @@ TEST_F(ListTest, SelfAssignment) {
 TEST_F(ListTest, RangeWithIteratorPreFix) {
   ASSERT_EQ(std::distance(list.Begin(), list.End()), sz) << 
                 "Distanse between begin and end iterators ins't equal size";
-  int iter = 1;
+  int iter = 7;
   for (auto it = list.Begin(); it != list.End(); ++it) {
-    ASSERT_EQ(*it, iter++);
+    ASSERT_EQ(*it, iter--);
   }
 }
 
 TEST_F(ListTest, RangeWithIteratorPostFix) {
   ASSERT_EQ(std::distance(list.Begin(), list.End()), sz) << 
                 "Distanse between begin and end iterators ins't equal size";
-  int iter = 1;
+  int iter = 7;
   for (auto it = list.Begin(); it != list.End(); it++) {
-    ASSERT_EQ(*it, iter++);
+    ASSERT_EQ(*it, iter--);
   }
 }
 
 TEST_F(ListTest, EraseBegin) {
-  int second_value = *(list.Begin()++);
+  int first_value = *(++list.Begin());
   list.EraseAfter(list.Begin());
   ASSERT_EQ(list.Size(), sz - 1);
-  ASSERT_NE(*(list.Begin()++), second_value);
+  ASSERT_NE(*(++list.Begin()), first_value);
 }
 
 TEST_F(ListTest, EraseMedium) {
@@ -161,7 +162,7 @@ TEST_F(ListTest, EraseMedium) {
   list.EraseAfter(it);
   ASSERT_EQ(list.Size(), sz - 1);
   for (auto it = list.Begin(); it != list.End(); ++it) {
-    ASSERT_NE(*it, 4);
+    ASSERT_NE(*it, 3);
   }
 }
 
