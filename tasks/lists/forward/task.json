@@ -14,8 +14,8 @@
       ]
     }
   ],
-  "lint_files": ["forward_list.hpp"],
-  "submit_files": ["forward_list.hpp"],
+  "lint_files": ["forward_list.hpp", "exceptions.hpp"],
+  "submit_files": ["forward_list.hpp", "exceptions.hpp"],
   "forbidden": [
     {
       "patterns": [
