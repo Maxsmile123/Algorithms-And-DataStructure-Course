@@ -2,7 +2,7 @@
 
 ## Пререквизиты
 
-- [tree/bst](/tasks/tree/bst)
+- [tree/bst](/tasks/tree/bst) - рекомендуется
 - [vector](/tasks/vector) - рекомендуется
 
 ---
