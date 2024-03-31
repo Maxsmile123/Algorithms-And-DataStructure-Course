@@ -78,7 +78,7 @@ void BM_CustomListErase(benchmark::State& state) {
   ForwardList<int> list;
   for (auto _ : state) {
     ConstructRandomList(list, state.range(0));
-    for (int64_t i = 0; i < state.range(0); ++i) {
+    for (int64_t i = 0; i < state.range(0) - 1; ++i) {
       list.EraseAfter(list.Begin());
     }
   }
@@ -89,7 +89,7 @@ void BM_StdListErase(benchmark::State& state) {
   std::forward_list<int> list;
   for (auto _ : state) {
     ConstructRandomList(list, state.range(0));
-    for (int64_t i = 0; i < state.range(0); ++i) {
+    for (int64_t i = 0; i < state.range(0) - 1; ++i) {
       list.erase_after(list.begin());
     }
   }
