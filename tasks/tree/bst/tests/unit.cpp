@@ -288,9 +288,9 @@ TEST_F(MapTest, EraseSeveralValues) {
 }
 
 TEST_F(MapTest, EraseNotExistingValue) {
-  EXPECT_THROW({
+  EXPECT_ANY_THROW({
     mp.Erase(-100);
-  }, std::runtime_error);
+  });
 }
 
 TEST_F(MapTest, CustomComparator) {

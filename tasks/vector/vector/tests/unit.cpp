@@ -200,7 +200,7 @@ TEST(EmptyVectorTest, OperatorSqueareBrackets) {
     t2.join();
 
     auto future = std::async(std::launch::async, &std::thread::join, &t3);
-    ASSERT_EQ(
+    ASSERT_LT(
         future.wait_for(std::chrono::seconds(1)),
         std::future_status::timeout
     ) << "There is deadlock!\n"; 
