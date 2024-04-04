@@ -122,6 +122,26 @@ TEST(EmptyListTest, Swap) {
   ASSERT_EQ(list.Back(), 14);
 }
 
+TEST(EmptyListTest, PopBackOneElement) {
+  List<int> lst;
+  lst.PushBack(1);
+  lst.PopBack();
+  lst.PushBack(1);
+  lst.PopFront();
+
+  ASSERT_TRUE(lst.IsEmpty());
+}
+
+TEST(EmptyListTest, PopFrontOneElement) {
+  List<int> lst;
+  lst.PushBack(1);
+  lst.PopFront();
+  lst.PushBack(1);
+  lst.PopFront();
+
+  ASSERT_TRUE(lst.IsEmpty());
+}
+
 TEST_F(ListTest, CopyConstructor) {
   List<int> lst = list;
   ASSERT_NE(&list, &lst) << "Copy constructor must do copy!\n";
