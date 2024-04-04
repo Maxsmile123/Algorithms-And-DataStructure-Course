@@ -85,16 +85,12 @@ void BM_CustomMapErase(benchmark::State& state) {
   std::uniform_int_distribution<int> dist(INT_MIN, INT_MAX);
   int random_key;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomMap(mp, state.range(0));
-    state.ResumeTiming();
     for (int64_t i = 0; i < state.range(0); ++i) {
-      state.PauseTiming();
       random_key = dist(mt);
-      state.ResumeTiming();
       try{
         mp.Erase(random_key);
-      } catch(std::runtime_error&){}
+      } catch(...){}
     }
   }
   state.SetComplexityN(state.range(0));
@@ -107,16 +103,12 @@ void BM_StdMapErase(benchmark::State& state) {
   std::uniform_int_distribution<int> dist(INT_MIN, INT_MAX);
   int random_key;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomMap(mp, state.range(0));
-    state.ResumeTiming();
     for (int64_t i = 0; i < state.range(0); ++i) {
-      state.PauseTiming();
       random_key = dist(mt);
-      state.ResumeTiming();
       try{
         mp.erase(random_key);
-      } catch(std::runtime_error&){}
+      } catch(...){}
     }
   }
   state.SetComplexityN(state.range(0));
@@ -125,9 +117,7 @@ void BM_StdMapErase(benchmark::State& state) {
 void BM_CustomMapClear(benchmark::State& state) {
   Map<int, int> mp;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomMap(mp, state.range(0));
-    state.ResumeTiming();
     mp.Clear();
   }
   state.SetComplexityN(state.range(0));
@@ -136,9 +126,7 @@ void BM_CustomMapClear(benchmark::State& state) {
 void BM_StdMapClear(benchmark::State& state) {
   std::map<int, int> mp;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomMap(mp, state.range(0));
-    state.ResumeTiming();
     mp.clear();
   }
   state.SetComplexityN(state.range(0));
