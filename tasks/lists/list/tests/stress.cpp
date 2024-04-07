@@ -77,9 +77,7 @@ void BM_StdListMiddleInsert(benchmark::State& state) {
 void BM_CustomListErase(benchmark::State& state) {
   List<int> list;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
     for (int64_t i = 0; i < state.range(0); ++i) {
       list.Erase(list.Begin());
     }
@@ -90,9 +88,7 @@ void BM_CustomListErase(benchmark::State& state) {
 void BM_StdListErase(benchmark::State& state) {
   std::list<int> list;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
     for (int64_t i = 0; i < state.range(0); ++i) {
       list.erase(list.begin());
     }
@@ -103,9 +99,7 @@ void BM_StdListErase(benchmark::State& state) {
 void BM_CustomListClear(benchmark::State& state) {
   List<int> list;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
     list.Clear();
   }
   state.SetComplexityN(state.range(0));
@@ -114,9 +108,7 @@ void BM_CustomListClear(benchmark::State& state) {
 void BM_StdListClear(benchmark::State& state) {
   std::list<int> list;
   for (auto _ : state) {
-    state.PauseTiming();
     ConstructRandomList(list, state.range(0));
-    state.ResumeTiming();
     list.clear();
   }
   state.SetComplexityN(state.range(0));
