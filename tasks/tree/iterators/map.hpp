@@ -14,12 +14,13 @@ template <
   typename Compare = std::less<Key>
 >
 class Map {
-public:
+
   class Node;
+public:
   class MapIterator {
     public:
       // NOLINTNEXTLINE
-      using value_type = T;
+      using value_type = std::pair<const Key, Value>;
       // NOLINTNEXTLINE
       using reference_type = value_type&;
       // NOLINTNEXTLINE

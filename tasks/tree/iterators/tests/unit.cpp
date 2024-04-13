@@ -177,7 +177,7 @@ TEST(EmptyMapTest, TreeFromExample) {
     {7, 7},
     {6, 6},
   });
-  auto values = mp.Values();
+  auto values = mp.Values(true);
   auto it = mp.Begin();
   for (const auto& val: values) {
     ASSERT_EQ(it->second, val.second) <<
@@ -227,7 +227,7 @@ TEST_F(MapTest, GetDecreaseSortedValues) {
 }
 
 TEST_F(MapTest, SimpleIteratorBypass) {
-  auto values = mp.Values();
+  auto values = mp.Values(true);
   auto it = mp.Begin();
 
   for (size_t i = 0; i < values.size(); ++i) {
