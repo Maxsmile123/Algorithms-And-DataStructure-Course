@@ -2,4 +2,4 @@
 
 add_subdirectory(bst)
 add_subdirectory(NTree)
-#add_subdirectory(iterators)
+add_subdirectory(iterators)

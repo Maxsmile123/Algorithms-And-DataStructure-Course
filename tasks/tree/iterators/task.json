@@ -1,0 +1,39 @@
+{
+  "tests": [
+    {
+      "targets": ["unit_tests"],
+      "profiles": [
+        "Debug",
+        "DebugASan"
+      ]
+    },
+    {
+      "targets": ["stress_tests"],
+      "profiles": [
+        "Release"
+      ]
+    }
+  ],
+  "lint_files": ["map.hpp"],
+  "submit_files": ["map.hpp"],
+  "forbidden": [
+    {
+      "patterns": [
+        "Not implemented"
+      ],
+      "hint": "You should implement this part"
+    },
+    {
+      "patterns": [
+        "std::map"
+      ],
+      "hint": "Don't use std::map -> implement him"
+    },
+    {
+      "patterns": [
+        "std::sort"
+      ],
+      "hint": "Don't use std::sort -> BST doesn't need this"
+    }
+  ]
+}
