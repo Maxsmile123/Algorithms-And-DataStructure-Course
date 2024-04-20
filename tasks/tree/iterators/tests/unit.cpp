@@ -179,10 +179,10 @@ TEST(EmptyMapTest, TreeFromExample) {
   });
   auto values = mp.Values(true);
   auto it = mp.Begin();
-  for (const auto& val: values) {
-    ASSERT_EQ(it->second, val.second) <<
+  for (size_t i = 0; i < values.size(); ++i) {
+    ASSERT_EQ(it->second, val[i].second) <<
                 fmt::format("Values isn't equal on {} index", 
-                    std::distance(mp.Begin(), it)
+                    i
                 );
     ++it;
   }
@@ -230,7 +230,7 @@ TEST_F(MapTest, SimpleIteratorBypass) {
   auto values = mp.Values(true);
   auto it = mp.Begin();
 
-  for (size_t i = 0; i < values.size(); ++i) {
+  for (size_t i = 0; i < values.size(); ++i, it++) {
     ASSERT_EQ(*it, values[i]);
   }
 }
