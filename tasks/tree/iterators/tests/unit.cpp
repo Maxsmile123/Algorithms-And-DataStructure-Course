@@ -180,7 +180,7 @@ TEST(EmptyMapTest, TreeFromExample) {
   auto values = mp.Values(true);
   auto it = mp.Begin();
   for (size_t i = 0; i < values.size(); ++i) {
-    ASSERT_EQ(it->second, val[i].second) <<
+    ASSERT_EQ(it->second, values[i].second) <<
                 fmt::format("Values isn't equal on {} index", 
                     i
                 );
