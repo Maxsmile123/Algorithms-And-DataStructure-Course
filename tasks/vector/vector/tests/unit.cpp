@@ -128,9 +128,9 @@ TEST(EmptyVectorTest, MoveOperator) {
     Vector<MemoryUseObject> vec1;
     vec1.PushBack(MemoryUseObject());
     Vector<MemoryUseObject> vec;
-    vec1 = std::move(vec);
-    ASSERT_EQ(vec1.Size(), 1);
-    ASSERT_EQ(vec.Size(), 0);
+    vec = std::move(vec1);
+    ASSERT_EQ(vec.Size(), 1);
+    ASSERT_EQ(vec1.Size(), 0);
 }
 
 TEST(EmptyVectorTest, Init_list) {
@@ -288,8 +288,10 @@ TEST_F(VectorTest, InsertMid) {
     for (size_t i = 0; i < vec.Size(); ++i) {
         if (i == sz / 2) {
             ASSERT_EQ(vec[i], 0);
-        } else {
+        } else if (i < sz / 2) {
             ASSERT_EQ(vec[i], i + 1);
+        } else {
+            ASSERT_EQ(vec[i], i);
         }
     }
 }
@@ -304,10 +306,12 @@ TEST_F(VectorTest, InsertWithResize) {
     vec.Insert(pos, 0);
     ASSERT_NE(cur_cap, vec.Capacity());
     for (size_t i = 0; i < vec.Size(); ++i) {
-        if (i == pos) {
+        if (i == sz / 2) {
             ASSERT_EQ(vec[i], 0);
-        } else {
+        } else if (i < sz / 2) {
             ASSERT_EQ(vec[i], i + 1);
+        } else {
+            ASSERT_EQ(vec[i], i);
         }
     }
 }
