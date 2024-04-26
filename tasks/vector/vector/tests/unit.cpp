@@ -306,9 +306,9 @@ TEST_F(VectorTest, InsertWithResize) {
     vec.Insert(pos, 0);
     ASSERT_NE(cur_cap, vec.Capacity());
     for (size_t i = 0; i < vec.Size(); ++i) {
-        if (i == sz / 2) {
+        if (i == vec.Size() / 2) {
             ASSERT_EQ(vec[i], 0);
-        } else if (i < sz / 2) {
+        } else if (i < vec.Size() / 2) {
             ASSERT_EQ(vec[i], i + 1);
         } else {
             ASSERT_EQ(vec[i], i);
