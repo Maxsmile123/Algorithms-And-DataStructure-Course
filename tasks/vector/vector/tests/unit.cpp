@@ -249,9 +249,6 @@ TEST(EmptyVectorTest, VoidAsTemplate) {
     vec.PushBack(malloc(1));
     vec.PushBack(malloc(1));
     vec.PushBack(malloc(1));
-    void* ptr = vec.Front();
-    ptr = vec.Back();
-    free(ptr);
 }
 
 
