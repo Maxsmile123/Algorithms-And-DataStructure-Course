@@ -40,6 +40,28 @@ public:
         a = malloc(100);
     };
 
+    MemoryUseObject(const MemoryUseObject&) {
+        a = malloc(100);
+    };
+
+    MemoryUseObject(const MemoryUseObject&& other) {
+        a = other.a;
+        other.a = nullptr;
+    };
+
+    MemoryUseObject& operator=(const MemoryUseObject&){
+        return *this;
+    }
+
+     MemoryUseObject& operator=(const MemoryUseObject&& other){
+        if (a) {
+            free(a);
+        }
+        a = other.a;
+        ohter.a = nullptr;
+        return *this;
+    }
+
     ~MemoryUseObject(){
         free(a);
     }
