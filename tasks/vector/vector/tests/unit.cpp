@@ -44,7 +44,7 @@ public:
         a = malloc(100);
     };
 
-    MemoryUseObject(const MemoryUseObject&& other) {
+    MemoryUseObject(MemoryUseObject&& other) {
         a = other.a;
         other.a = nullptr;
     };
@@ -53,12 +53,12 @@ public:
         return *this;
     }
 
-     MemoryUseObject& operator=(const MemoryUseObject&& other){
+     MemoryUseObject& operator=(MemoryUseObject&& other){
         if (a) {
             free(a);
         }
         a = other.a;
-        ohter.a = nullptr;
+        other.a = nullptr;
         return *this;
     }
 
@@ -70,6 +70,7 @@ public:
 private:
     void* a;
 };
+
 
 struct President {
     std::string name;
