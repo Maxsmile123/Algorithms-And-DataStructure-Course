@@ -409,7 +409,7 @@ TEST_F(VectorTest, VectorResizeEqualCurrent) {
     size_t old_cap = vec.Capacity();
     size_t old_size = vec.Size();
     vec.Resize(old_size, 0); // no effect
-    ASSERT_NE(vec.Capacity(), old_cap);
+    ASSERT_EQ(vec.Capacity(), old_cap);
     ASSERT_EQ(vec.Size(), old_size);
     for (size_t i = 0; i < old_size; ++i) {
         ASSERT_EQ(vec[i], i + 1);
