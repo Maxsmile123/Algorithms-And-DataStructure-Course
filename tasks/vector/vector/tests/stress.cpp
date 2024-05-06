@@ -1,4 +1,5 @@
 #include "../vector.hpp"
+#include "../vector.cpp"
 
 #include <random>
 #include <vector>
