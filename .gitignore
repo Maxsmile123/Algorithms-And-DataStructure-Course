@@ -26,3 +26,4 @@ build_asan
 .DS_Store
 .cache/
 CMakeFiles
+./tasks/hashtable
