@@ -53,7 +53,9 @@ workspace
 Перейдите в директорию с репозиторием курса и подтяните необходимые репозиторию [сабмодули git](https://git-scm.com/book/en/v2/Git-Tools-Submodules):
 
 ```shell
+mv Algorithms-And-DataStructure-Course algo-2025
 cd Algorithms-And-DataStructure-Course
+git submodule init
 git submodule update --remote --merge
 ```
 

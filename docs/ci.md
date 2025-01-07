@@ -26,7 +26,7 @@
 
 Перейдите в локальную копию репозитория курса:
 ```shell
-cd /workspace/Algorithms-And-DataStructure-Course
+cd /workspace/algo-2025
 ```
 
 #### Шаг 2
@@ -37,9 +37,9 @@ clippy attach {solutions-repo-url}
 ```
 Вместо `{solutions-repo-url}` подставьте url созданного только что репозитория.
 
-Команда будет выглядеть примерно так:
+Если имя созданного мною репозитория - `algo-2025-solution`, то команда будет выглядеть так:
 ```shell
-clippy attach https://github.com/Maxsmile123/Algorithms-And-DataStructure-Course-Solution
+clippy attach https://github.com/Maxsmile123/algo-2025-solution
 ```
 
 Команду `attach` можно выполнить повторно: существующая локальная копия сотрется (с вашего явного разрешения), но это не страшно, если вы запушили все ваши коммиты с помощью `clippy push` в remote репозиторий.

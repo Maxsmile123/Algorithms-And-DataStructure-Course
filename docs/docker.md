@@ -47,11 +47,14 @@ docker run hello-world
 ## Логин в контейнер
 
 Запустите в хост-системе скрипт `login` из `docker/client/bin`.
+```shell
+./docker/client/bin/login
+```
 
 Вы успешно вошли в контейнер, если видите приветствие:
 ```
 Hi, ${USERNAME}!
-Welcome to Docker container 'AlgorithmsAndDataStructureCourse'!
+Welcome to Docker container 'algo-2025'!
 (___-){
 ===================================
 
