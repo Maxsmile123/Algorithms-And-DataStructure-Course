@@ -1,84 +1,72 @@
 - group:    Tutorial
-  start:    01-02-2025 12:00
-  deadline: 23-02-2023 23:59
+  start:    15-02-2025 12:00
+  deadline: 22-02-2025 23:59
   tasks:
     - task: tutorial/aplusb
       score: 100
 
 - group:    Bash
-  start:    16-02-2023 12:00
-  deadline: 23-02-2023 23:59
+  start:    22-02-2025 12:00
+  deadline: 01-03-2025 23:59
   tasks:
     - task: bash
-      score: 100
+      score: 150
 
-# Iterators and Templates. Class
+# Iterators and Templates. Classes
 - group:    Lists
-  start:    23-02-2023 12:00
-  deadline: 02-03-2023 23:59
+  start:    08-03-2025 12:00
+  deadline: 21-03-2025 23:59
   tasks:
     - task: lists/list
-      score: 100
-    - task: lists/forward
       score: 200
+    - task: lists/forward
+      score: 250
 
 # Smart Pointers
 - group:    Tree
-  start:    02-03-2023 21:00
-  deadline: 09-03-2023 23:59
+  start:    22-03-2025 21:00
+  deadline: 12-04-2025 23:59
   tasks:
     - task: tree/bst
-      score: 200
+      score: 300
     - task: tree/iterators
-      score: 100
+      score: 200
     - task: tree/NTree
-      score: 100
+      score: 200
 
 # Allocators and Move
 - group:    Vector
-  start:    02-03-2023 21:00
-  deadline: 16-03-2023 23:59
+  start:    12-04-2025 21:00
+  deadline: 26-04-2025 23:59
   tasks:
     - task: vector/vector
+      score: 300
+
+# Allocators and Move
+- group:    Abstract Syntax Tree
+  start:    19-04-2025 21:00
+  deadline: 03-05-2025 23:59
+  tasks:
+    - task: ast/ast
       score: 200
-    - task: vector/allocator
-      score: 200
+    - task: ast/dijkstra
+      score: 150
 
 # Design. Container as template parametr
 - group:    Abstract
-  start:    02-03-2023 21:00
-  deadline: 16-03-2023 23:59
+  start:    26-04-2025 21:00
+  deadline: 17-05-2025 23:59
   tasks:
     - task: abstract/deque
       score: 200
     - task: abstract/queue
-      score: 200
+      score: 150
     - task: abstract/stack
-      score: 200
-
-# Hash
-- group:    Hash Table
-  start:    02-03-2023 21:00
-  deadline: 16-03-2023 23:59
-  tasks:
-    - task: hashtable/HashTable
-      score: 200
-    - task: hashtable/hash
-      score: 200
-
-# Sorting Algorithms
-- group:    Sorting
-  start:    02-03-2023 21:00
-  deadline: 16-03-2023 23:59
-  tasks:
-    - task: sorting/sort
-      score: 200
-    - task: sorting/heap
-      score: 200
+      score: 150
 
 - group:    My Ok
-  start:    21-04-2023 12:00
-  deadline: 01-06-2023 23:59
+  start:    17-05-2025 12:00
+  deadline: 01-06-2025 23:59
   tasks:
     - task: ok/ok
-      score: 10
+      score: 100
