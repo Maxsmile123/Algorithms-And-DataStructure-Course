@@ -43,7 +43,7 @@
       score: 300
 
 # Allocators and Move
-- group:    Abstract Syntax Tree
+- group:    Ast
   start:    19-04-2025 21:00
   deadline: 03-05-2025 23:59
   tasks:
@@ -64,7 +64,7 @@
     - task: abstract/stack
       score: 150
 
-- group:    My Ok
+- group:    Ok
   start:    17-05-2025 12:00
   deadline: 01-06-2025 23:59
   tasks:
