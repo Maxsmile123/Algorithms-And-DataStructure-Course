@@ -1,21 +1,21 @@
 - group:    Tutorial
-  start:    15-02-2025 12:00
-  deadline: 22-02-2025 23:59
+  start:    17-02-2025 12:00
+  deadline: 24-02-2025 23:59
   tasks:
     - task: tutorial/aplusb
       score: 100
 
 - group:    Bash
-  start:    22-02-2025 12:00
-  deadline: 01-03-2025 23:59
+  start:    24-02-2025 12:00
+  deadline: 02-03-2025 23:59
   tasks:
     - task: bash
       score: 150
 
 # Iterators and Templates. Classes
 - group:    Lists
-  start:    08-03-2025 12:00
-  deadline: 21-03-2025 23:59
+  start:    10-03-2025 12:00
+  deadline: 31-03-2025 23:59
   tasks:
     - task: lists/list
       score: 200
@@ -24,38 +24,33 @@
 
 # Smart Pointers
 - group:    Tree
-  start:    22-03-2025 21:00
+  start:    24-03-2025 21:00
   deadline: 12-04-2025 23:59
   tasks:
     - task: tree/bst
       score: 300
     - task: tree/iterators
       score: 200
-    - task: tree/NTree
-      score: 200
 
 # Allocators and Move
 - group:    Vector
-  start:    12-04-2025 21:00
-  deadline: 26-04-2025 23:59
+  start:    07-04-2025 21:00
+  deadline: 28-04-2025 23:59
   tasks:
     - task: vector/vector
       score: 300
 
-# Allocators and Move
-- group:    Ast
-  start:    19-04-2025 21:00
-  deadline: 03-05-2025 23:59
+- group:   Filesystem
+  start:    21-04-2025 21:00
+  deadline: 12-05-2025 23:59
   tasks:
-    - task: ast/ast
+    - task: tree/NTree
       score: 200
-    - task: ast/dijkstra
-      score: 150
 
 # Design. Container as template parametr
 - group:    Abstract
-  start:    26-04-2025 21:00
-  deadline: 17-05-2025 23:59
+  start:    28-04-2025 21:00
+  deadline: 19-05-2025 23:59
   tasks:
     - task: abstract/deque
       score: 200
@@ -63,10 +58,3 @@
       score: 150
     - task: abstract/stack
       score: 150
-
-- group:    Ok
-  start:    17-05-2025 12:00
-  deadline: 01-06-2025 23:59
-  tasks:
-    - task: ok/ok
-      score: 100
