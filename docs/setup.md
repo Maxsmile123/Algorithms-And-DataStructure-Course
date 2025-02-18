@@ -54,7 +54,7 @@ workspace
 
 ```shell
 mv Algorithms-And-DataStructure-Course algo-2025
-cd Algorithms-And-DataStructure-Course
+cd algo-2025
 git submodule init
 git submodule update --remote --merge
 ```

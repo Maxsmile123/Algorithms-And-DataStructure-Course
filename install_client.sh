@@ -7,5 +7,5 @@ if ( which dirname ) && ( which realpath ); then
   cd "${PROJECT_ROOT}"
 fi
 
-git submodule update --init --recursive
+git submodule update --remote --merge
 client/install.py --alias clippy
