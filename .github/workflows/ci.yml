@@ -5,13 +5,13 @@ on:
 
 jobs:
   Check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
     - name: Install Clippy
       run: |
-          git submodule update --init --recursive
+          git submodule update --remote --merge
           chmod +x ./install_client.sh
           chmod +x ./client/install.py
           sudo bash ./docker/image/install_deps.sh
