@@ -15,7 +15,7 @@
     }
   ],
   "lint_files": ["list.hpp", "exceptions.hpp"],
-  "submit_files": ["list.hpp"],
+  "submit_files": ["list.hpp", "exceptions.hpp"],
   "forbidden": [
     {
       "patterns": [
