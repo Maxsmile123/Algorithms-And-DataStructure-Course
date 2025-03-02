@@ -26,11 +26,11 @@ public:
     /*???*/
 
   private:
-      ForwardListIterator(const Node*) {
+      explicit ForwardListIterator(const Node*) {
           // Not implemented
       }
   private:
-      Node* current;
+      Node* current_;
   };
 
 public:
@@ -114,7 +114,7 @@ private:
 namespace std {
   // Global swap overloading
   template <typename T>
-  void swap(ForwardList<T>& a, ForwardList<T>& b) {
+  void swap(ForwardList<T>& a, ForwardList<T>& b) { // NOLINT
     a.Swap(b);
   }
 }
