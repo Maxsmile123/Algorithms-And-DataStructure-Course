@@ -151,13 +151,13 @@ TEST_F(ListTest, RangeWithIteratorPostFix) {
 
 TEST_F(ListTest, FindFirst) {
   auto it = list.Begin();
-  ASSERT_EQ(it, list.Find(1));
+  ASSERT_EQ(it, list.Find(7));
 }
 
 TEST_F(ListTest, FindLast) {
   auto it = list.Begin();
   std::advance(it, 6);
-  ASSERT_EQ(it, list.Find(7));
+  ASSERT_EQ(it, list.Find(1));
 }
 
 TEST_F(ListTest, FindFail) {
@@ -167,7 +167,7 @@ TEST_F(ListTest, FindFail) {
 
 TEST_F(ListTest, FindAll) {
   auto it = list.Begin();
-  for (int i = 1; i < 8; ++i) {
+  for (int i = 7; i >= 1; --i) {
     ASSERT_EQ(it++, list.Find(i));
   }
 }
