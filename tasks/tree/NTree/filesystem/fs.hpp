@@ -2,9 +2,8 @@
 
 #include <vector>
 
-#include "./files/directory.hpp"
 #include "./detail/exceptions.hpp"
-
+#include "./files/directory.hpp"
 
 namespace filesystem {
 
@@ -22,10 +21,7 @@ public:
 
     void CreateFile(const std::string& /*path = "."*/, bool /*is_overwrite = false*/);
 
-    void WriteToFile(
-        const std::string& /*filename*/, 
-        bool /*is_overwrite = false*/,
-        std::ostringstream& /*stream*/
+    void WriteToFile(const std::string& /*filename*/, bool /*is_overwrite = false*/, std::ostringstream& /*stream*/
     );
 
     void ShowFileContent(const std::string& /*path*/);
@@ -34,6 +30,7 @@ public:
 
 private:
     std::vector<std::string> Split(const std::string& /*str*/, const std::string& /*splitter*/);
+
 private:
     /*
     filesystem::files::Directory* root;
@@ -41,4 +38,4 @@ private:
     */
 };
 
-} // end namespace filesystem
+}  // end namespace filesystem

@@ -2,7 +2,6 @@
 
 #include <string>
 
-
 namespace filesystem {
 
 class File {
@@ -18,4 +17,4 @@ private:
     std::string content;
 };
 
-} // end namespace filesystem
+}  // end namespace filesystem

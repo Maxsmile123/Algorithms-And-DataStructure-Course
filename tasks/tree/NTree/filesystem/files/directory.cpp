@@ -1,5 +1,3 @@
 #include "directory.hpp"
 
-namespace filesystem {
-
-} // end namespace filesystem
+namespace filesystem {}  // end namespace filesystem

@@ -17,12 +17,12 @@ Vector<T>::Vector(const Vector& /*other*/) {
 
 template <typename T>
 Vector<T>& Vector<T>::operator=(const Vector& /*other*/) {
-    std::abort(); // Not Implemented
+    std::abort();  // Not Implemented
 }
 
 template <typename T>
 Vector<T>& Vector<T>::operator=(Vector&& /*other*/) {
-    std::abort(); // Not Implemented
+    std::abort();  // Not Implemented
 }
 
 template <typename T>

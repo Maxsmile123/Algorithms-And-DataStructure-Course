@@ -2,15 +2,14 @@
 
 #include <vector>
 
-#include "file.hpp"
-#include "../map/map.hpp"
 #include "../fs.hpp"
-
+#include "../map/map.hpp"
+#include "file.hpp"
 
 namespace filesystem {
 
 class Directory {
-friend class Fs;
+    friend class Fs;
 
     void GetName() const;
 
@@ -20,4 +19,4 @@ private:
     Map<std::string, File> files;
 };
 
-} // end namespace filesystem
+}  // end namespace filesystem
