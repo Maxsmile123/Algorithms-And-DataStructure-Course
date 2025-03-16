@@ -14,8 +14,8 @@
 
 # Iterators and Templates. Classes
 - group:    Lists
-  start:    10-03-2025 12:00
-  deadline: 31-03-2025 23:59
+  start:    17-03-2025 12:00
+  deadline: 07-04-2025 23:59
   tasks:
     - task: lists/list
       score: 200
