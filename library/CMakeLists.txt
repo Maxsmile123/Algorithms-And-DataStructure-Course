@@ -60,7 +60,8 @@ project_log("FetchContent: mimalloc")
 FetchContent_Declare(
         mimalloc
         GIT_REPOSITORY https://github.com/microsoft/mimalloc
-        GIT_TAG master
+        GIT_TAG af21001
+
 )
 FetchContent_MakeAvailable(mimalloc)
 
