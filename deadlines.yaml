@@ -25,7 +25,7 @@
 # Smart Pointers
 - group:    Tree
   start:    31-03-2025 21:00
-  deadline: 14-04-2025 23:59
+  deadline: 21-04-2025 23:59
   tasks:
     - task: tree/bst
       score: 300
