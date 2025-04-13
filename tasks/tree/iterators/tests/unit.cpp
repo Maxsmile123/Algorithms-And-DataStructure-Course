@@ -333,7 +333,7 @@ TEST_F(MapTest, CustomComparator) {
   struct Point {
     int x;
     int y;
-    bool operator==(const Point& b) {
+    bool operator==(const Point& b) const {
       return (this->x == b.x) && (this->y == b.y);
     }
   };
